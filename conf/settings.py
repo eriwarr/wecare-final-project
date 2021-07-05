@@ -27,7 +27,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'wecare-eriwarr.herokuapp.com/',
+    'wecare-eriwarr.herokuapp.com',
     '127.0.0.1',
 ]
 
