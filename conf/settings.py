@@ -171,6 +171,12 @@ AUTH_USER_MODEL = 'accounts.User'
 
 SITE_ID = 1
 
+# Managing files
+# https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-MEDIA_ROOT
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'frontend/static/build/static'),)
 REACT_APP_DIR = os.path.join(BASE_DIR, 'frontend/static')
 

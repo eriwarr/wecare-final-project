@@ -4,6 +4,8 @@ import { Component } from 'react';
 
 import Login from './Login';
 import Registration from './Registration';
+import CreateUserProfile from './CreateUserProfile';
+import UserProfile from './UserProfile';
 
 
 class App extends Component {
@@ -35,7 +37,7 @@ class App extends Component {
     if(response.ok) {
       const data = await response.json().catch(handleError);
       Cookies.set('Authorization', `Token ${data.key}`);
-      this.setState({ selection: 'home' });
+      this.setState({ selection: 'profile' });
     } else {
       //throw error
     }
@@ -58,7 +60,7 @@ class App extends Component {
   }
 
   async navigation(selection) {
-    this.setState({ selection }); 
+    this.setState({ selection });
   }
 
   async registration(user) {
@@ -75,11 +77,11 @@ class App extends Component {
     if(response.ok) {
       const data = await response.json().catch(handleError);
       Cookies.set('Authorization', `Token ${data.key}`);
+      this.setState({ selection: 'createuserprofile' })
     } else {
       // throw an Error
     }
   }
-
 
   render() {
     return (
@@ -90,6 +92,8 @@ class App extends Component {
       }
       {this.state.selection === 'login' && <Login login={this.login} navigation={this.navigation}/>}
       {this.state.selection === 'registration' && <Registration registration={this.registration} navigation={this.navigation}/>}
+      {this.state.selection === 'createuserprofile' && <CreateUserProfile/>}
+      {this.state.selection === 'userprofile' && <UserProfile/>}
       </>
     );
   }

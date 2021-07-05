@@ -19,7 +19,6 @@ class Login extends Component {
       this.props.login(this.state);
     }
     render() {
-      console.log(this.props.navigation)
       return (
         <div className="signup-form">
           <form onSubmit={this.submit}>
