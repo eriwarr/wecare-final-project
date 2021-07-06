@@ -6,6 +6,7 @@ import Login from './Login';
 import Registration from './Registration';
 import CreateUserProfile from './CreateUserProfile';
 import UserProfile from './UserProfile';
+import EventLog from './EventLog';
 
 
 class App extends Component {
@@ -93,7 +94,9 @@ class App extends Component {
       {this.state.selection === 'login' && <Login login={this.login} navigation={this.navigation}/>}
       {this.state.selection === 'registration' && <Registration registration={this.registration} navigation={this.navigation}/>}
       {this.state.selection === 'createuserprofile' && <CreateUserProfile/>}
-      {this.state.selection === 'userprofile' && <UserProfile/>}
+      {this.state.selection === 'userprofile' && <UserProfile navigation={this.navigation}/>}
+      {this.state.selection === 'eventLog' && <EventLog/>}
+      Hi this is the homepage and we are underconstruction. 
       </>
     );
   }

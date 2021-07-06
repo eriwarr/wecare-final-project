@@ -83,7 +83,7 @@ class UserProfile extends Component {
               }
               <div>Saved Upcoming Events</div>
               <div>Favorites</div>
-              <button className="btn btn-primary edit-profile" onClick={()=> this.props.handleNavigation('event-log')}>See Past Events</button>
+              <button className="btn btn-primary edit-profile" onClick={()=> this.props.navigation('eventLog')}>See Past Events</button>
               <button className="btn btn-primary edit-profile" onClick={()=> this.props.handleNavigation('user-profile-articles')}>See Upcoming Events Your Area</button>
               <button className="btn btn-primary edit-profile" onClick={()=> this.props.handleNavigation('gallery')}>See Gallery Posts</button>
             </div>
