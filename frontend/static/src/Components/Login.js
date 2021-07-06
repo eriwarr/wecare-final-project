@@ -1,4 +1,6 @@
 import { Component } from 'react';
+import { BrowserRouter as Route} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Login extends Component {
   constructor(props) {
@@ -7,6 +9,7 @@ class Login extends Component {
       username: '',
       email: '',
       password: '',
+     
     }
     this.handleInput = this.handleInput.bind(this);
     this.submit = this.submit.bind(this);
@@ -19,6 +22,7 @@ class Login extends Component {
       this.props.login(this.state);
     }
     render() {
+
       return (
         <div className="signup-form">
           <form onSubmit={this.submit}>
@@ -37,7 +41,7 @@ class Login extends Component {
                 <button type="submit" className="btn btn-success btn-lg btn-block">Log In</button>
               </div>
           </form>
-          <div className="text-center">Already have an account?<button type="button" className="btn" onClick={() => this.props.navigation('registration')}>Register!</button></div>
+          <div className="text-center">Don't have an account?<Link className="btn" to='/registration'>Register!</Link></div>
         </div>
       )
     }

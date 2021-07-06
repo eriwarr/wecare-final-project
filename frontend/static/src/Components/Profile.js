@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
 import { Component } from 'react';
 
-class UserProfile extends Component {
+class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -62,7 +62,7 @@ class UserProfile extends Component {
     return(
       <form onSubmit={this.editProfile}>
         <div className="container">
-          <h2>User Profile</h2>
+          <h2>{this.state.profile.username}</h2>
             <div className="card">
               {this.state.isEditing
                 ? <input className="card-img-top" type="file" name="profilePicture" onChange={this.uploadImage}/>
@@ -72,7 +72,7 @@ class UserProfile extends Component {
 
               {this.state.isEditing
                 ? <input className="card-title" type="text" name="username" value={this.state.username} onChange={this.input} placeholder={this.state.profile.username}></input>
-                : <h4 className="card-title">{this.state.profile.username}</h4>
+                : <h4 className="card-title">This is a placeholder to show volunteer ranking</h4>
               }
 
                 <p className="card-text">Hi {this.state.profile.username}! Time to get blogging! Click view posts to see your contributions.</p>
@@ -93,4 +93,4 @@ class UserProfile extends Component {
     )
   }
 }
-export default UserProfile;
+export default Profile;

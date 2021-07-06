@@ -1,12 +1,17 @@
 import './App.css';
 import Cookies from 'js-cookie';
+import { BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Component } from 'react';
 
 import Login from './Login';
 import Registration from './Registration';
 import CreateUserProfile from './CreateUserProfile';
-import UserProfile from './UserProfile';
-import EventLog from './EventLog';
+import Profile from './Profile'; 
+import EventList from './EventList';
+
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 
 
 class App extends Component {
@@ -23,7 +28,8 @@ class App extends Component {
 
   async login(user) {
 
-    this.setState({ user: user.username});
+    <Redirect to="/"/>
+
     const options = {
       method: 'POST',
       headers: {
@@ -38,7 +44,7 @@ class App extends Component {
     if(response.ok) {
       const data = await response.json().catch(handleError);
       Cookies.set('Authorization', `Token ${data.key}`);
-      this.setState({ selection: 'profile' });
+      console.log(data)
     } else {
       //throw error
     }
@@ -56,7 +62,7 @@ class App extends Component {
     const response = await fetch('/rest-auth/logout/', options).catch(handleError);
     if(response.ok) {
       Cookies.remove('Authorization');
-      this.setState({selection: 'login'});
+
     }
   }
 
@@ -85,19 +91,44 @@ class App extends Component {
   }
 
   render() {
+
     return (
-      <>
-      {!!Cookies.get('Authorization')
-        ?  <button className="btn btn-link text-decoration-none" onClick={this.logout}>LOGOUT</button>
-        :  <button className="btn btn-link text-decoration-none" onClick={() => this.setState({selection: 'login'})}>LOGIN</button>
-      }
-      {this.state.selection === 'login' && <Login login={this.login} navigation={this.navigation}/>}
-      {this.state.selection === 'registration' && <Registration registration={this.registration} navigation={this.navigation}/>}
-      {this.state.selection === 'createuserprofile' && <CreateUserProfile/>}
-      {this.state.selection === 'userprofile' && <UserProfile navigation={this.navigation}/>}
-      {this.state.selection === 'eventLog' && <EventLog/>}
-      Hi this is the homepage and we are underconstruction. 
-      </>
+      <Router>
+        <Navbar className='nav-header' bg="light" variant="dark">
+          <Navbar.Brand><Link to='/'>WeCare</Link></Navbar.Brand>
+          <Nav className="mr-auto">
+            <Link className="btn text-decoration-none" to='/'>About</Link>
+            <Link className="btn text-decoration-none" to='/events'>Events</Link>
+            <Link className="btn text-decoration-none" to='/'>Contact Us</Link>
+            {!!Cookies.get('Authorization') && <Link className="btn text-decoration-none" to='/profile'>View Profile</Link>}
+          </Nav>
+            {!!Cookies.get('Authorization')
+            ? <button type="button" className="btn text-decoration-none" onClick={this.logout}>Logout</button>
+            : <Link className="btn text-decoration-none" to='/login'>Login</Link>
+
+            }
+       </Navbar>
+        <Switch>
+          <Route exact path='/'>
+          </Route>
+          <Route path='/login'>
+            <Login login={this.login}/>
+          </Route>
+          <Route path='/registration'>
+            <Registration/>
+          </Route>
+          <Route path='/createuserprofile'>
+            <CreateUserProfile/>
+          </Route>
+          <Route path='/events'>
+            <EventList/>
+          </Route>
+          <Route path='/profile'>
+            <Profile/>
+          </Route>
+        </Switch>
+      </Router>
+
     );
   }
 }

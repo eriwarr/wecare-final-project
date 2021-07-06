@@ -1,4 +1,6 @@
 import { Component } from 'react';
+import { BrowserRouter as Route} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Registration extends Component {
   constructor(props){
@@ -8,6 +10,7 @@ class Registration extends Component {
       email: '',
       password1: '',
       password2: '',
+      redirect: false,
     }
     this.input = this.input.bind(this);
     this.submit = this.submit.bind(this);
@@ -19,10 +22,11 @@ class Registration extends Component {
 
   submit(event) {
     event.preventDefault();
-    this.props.handleRegistration(this.state);
+    this.setState({ redirect: true });
   }
 
   render() {
+    if (this.state.redirect) return <Route to='/createuserprofile'/>;
     return (
       <div className="signup-form">
   <form onSubmit={this.handleSubmit}>
@@ -44,7 +48,7 @@ class Registration extends Component {
         <button type="submit" className="btn btn-success btn-lg btn-block">Register Now</button>
       </div>
   </form>
-  <div className="text-center">Already have an account?<button type="button" className="btn" onClick={() => this.props.navigation('login')}>Login!</button></div>
+  <div className="text-center">Already have an account?<Link className="btn" to='/login'>Login!</Link></div>
 </div>
     )
   }

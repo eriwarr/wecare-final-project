@@ -12,6 +12,11 @@ class EventListView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(organizer=self.request.user)
 
+    def addattendee(request, id):
+        attendeeobj = get_object_or_404(Event,user=self.request.user)
+        Event().attendees.add(attendeeobj)
+        return render(request, 'thispage.html')
+
 class EventDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
