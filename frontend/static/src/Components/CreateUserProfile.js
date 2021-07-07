@@ -47,7 +47,7 @@ class CreateUserProfile extends Component {
     }
 
   render() {
-    console.log(this.state.profilePicture)
+    
     return (
       <>
       <form onSubmit={this.submit}>

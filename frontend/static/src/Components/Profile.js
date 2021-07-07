@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie';
 import { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Profile extends Component {
   constructor(props) {
@@ -83,9 +84,9 @@ class Profile extends Component {
               }
               <div>Saved Upcoming Events</div>
               <div>Favorites</div>
-              <button className="btn btn-primary edit-profile" onClick={()=> this.props.navigation('eventLog')}>See Past Events</button>
-              <button className="btn btn-primary edit-profile" onClick={()=> this.props.handleNavigation('user-profile-articles')}>See Upcoming Events Your Area</button>
-              <button className="btn btn-primary edit-profile" onClick={()=> this.props.handleNavigation('gallery')}>See Gallery Posts</button>
+              <Link className="btn btn-primary edit-profile" to='/eventlog'>See Past Events</Link>
+              <button className="btn btn-primary edit-profile" onClick={()=> this.props.handleNavigation('user-profile-articles')}>See Upcoming Events in Your Area</button>
+              <Link className="btn btn-primary edit-profile" onClick={()=> this.props.handleNavigation('gallery')}>See Gallery Posts</Link>
             </div>
           </div>
         </div>

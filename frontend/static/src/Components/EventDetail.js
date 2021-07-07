@@ -8,6 +8,7 @@ class EventDetail extends Component {
       isEditing: false,
     }
     this.editEvent = this.editEvent.bind(this);
+    this.signUp = this.signUp.bind(this);
   }
 
   editEvent() {
@@ -16,16 +17,21 @@ class EventDetail extends Component {
     this.props.updateEvent(event)
   }
 
+  signUp() {
+    console.log('testing')
+  }
+
   render() {
     const event = this.props.event
-    const dateToFormat = event.created_at
+    
     return (
       <>
       <p>Organizer: {event.owner}</p>
       <p>Event: {event.name}</p>
       <p>Type: {event.category}</p>
       <time>Date: <Moment format="MM/DD/YYYY">{event.event_date}</Moment></time>
-      <button>Sign Up for event</button>
+      <hr/>
+      <button type='button' onClick={this.signUp}>Sign Up for event</button>
       </>
     )
   }

@@ -10,3 +10,6 @@ class Event(models.Model):
     event_date = models.DateTimeField(auto_now=False)
     organizer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True)
     attendees = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='events', blank=True)
+
+    def __str__(self):
+        return self.name
