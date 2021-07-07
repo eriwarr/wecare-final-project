@@ -44,6 +44,7 @@ class App extends Component {
     if(response.ok) {
       const data = await response.json().catch(handleError);
       Cookies.set('Authorization', `Token ${data.key}`);
+      console.log(data)
       this.props.history.push('/');
     } else {
       //throw error

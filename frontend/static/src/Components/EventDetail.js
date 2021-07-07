@@ -20,30 +20,27 @@ class EventDetail extends Component {
 
   signUp(event) {
     const id = event.id
-    const attendees = event.attendees
-
     const options = {
-      method: 'PATCH',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'X-CSRFToken': Cookies.get('csrftoken'),
       },
-      body: JSON.stringify(event),
     }
-      fetch(`/api/v1/events/${id}/`, options)
-      .then(response => response.json())
-      .then(data => console.log(data.attendees))
+      fetch(`api/v1/events/${id}/attendees/add/`, options)
+      .then(response => console.log(response))
   }
 
   render() {
     const event = this.props.event
-
+    console.log(event)
     return (
       <>
       <p>Organizer: {event.owner}</p>
       <p>Event: {event.name}</p>
       <p>Type: {event.category}</p>
-      <time>Date: <Moment format="MM/DD/YYYY">{event.event_date}</Moment></time>
+      <p><time>Date: <Moment format="MM/DD/YYYY">{event.start}</Moment></time></p>
+      <p><time><Moment format="h:mm a">{event.start}</Moment></time>-<time><Moment format="h:mm a">{event.end}</Moment></time></p>
       <hr/>
       <button type='button' onClick={()=> this.signUp(event)}>Sign Up for event</button>
       </>

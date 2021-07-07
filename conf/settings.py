@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     # Local
     'accounts.apps.AccountsConfig',
     'api.apps.ApiConfig',
-    'events.apps.EventsConfig', 
+    'events.apps.EventsConfig',
     'frontend.apps.FrontendConfig',
 ]
 
@@ -71,6 +71,10 @@ REST_FRAMEWORK = {
 
 REST_AUTH_SERIALIZERS = {
     'TOKEN_SERIALIZER': 'accounts.serializers.TokenSerializer',
+}
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    "REGISTER_SERIALIZER":"accounts.serializers.CustomRegisterSerializer"
 }
 
 MIDDLEWARE = [
@@ -169,6 +173,7 @@ REST_FRAMEWORK = {
 
 # https://docs.djangoproject.com/en/3.2/topics/auth/customizing/#auth-custom-user
 AUTH_USER_MODEL = 'accounts.User'
+
 
 SITE_ID = 1
 
