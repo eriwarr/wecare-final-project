@@ -1,9 +1,14 @@
-from rest_framework import generics
+from rest_framework import generics, views
 from .models import Event
 from .serializers import EventSerializer
 from .permissions import IsAuthOrReadOnly
 from django.shortcuts import render, get_object_or_404
+from rest_framework import status
+from rest_framework.response import Response
 # Create your views here.
+
+
+
 class EventListView(generics.ListCreateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
@@ -11,11 +16,6 @@ class EventListView(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(organizer=self.request.user)
-
-    # def addattendee(request, id):
-    #     attendeeobj = get_object_or_404(Event,user=self.request.user)
-    #     Event().attendees.add(attendeeobj)
-    #     return render(request, 'thispage.html')
 
 class EventDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Event.objects.all()
@@ -36,3 +36,10 @@ class EventLogView(generics.ListCreateAPIView):
     def get_queryset(self):
         attendee = self.request.user
         return Event.objects.filter(attendees=attendee)
+
+class RegisterAttendeeAPIView(views.APIView):
+    def post(self, request, pk, format=None):
+        event = get_object_or_404(Event, id=pk)
+        user = self.request.user
+        event.attendees.add(user)
+        return Response('Resource updated successfully!', status=status.HTTP_200_OK)

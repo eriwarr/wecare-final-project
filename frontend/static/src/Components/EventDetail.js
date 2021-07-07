@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import Moment from 'react-moment';
+import Cookies from 'js-cookie';
 
 class EventDetail extends Component {
   constructor(props) {
@@ -17,13 +18,26 @@ class EventDetail extends Component {
     this.props.updateEvent(event)
   }
 
-  signUp() {
-    console.log('testing')
+  signUp(event) {
+    const id = event.id
+    const attendees = event.attendees
+
+    const options = {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': Cookies.get('csrftoken'),
+      },
+      body: JSON.stringify(event),
+    }
+      fetch(`/api/v1/events/${id}/`, options)
+      .then(response => response.json())
+      .then(data => console.log(data.attendees))
   }
 
   render() {
     const event = this.props.event
-    
+
     return (
       <>
       <p>Organizer: {event.owner}</p>
@@ -31,7 +45,7 @@ class EventDetail extends Component {
       <p>Type: {event.category}</p>
       <time>Date: <Moment format="MM/DD/YYYY">{event.event_date}</Moment></time>
       <hr/>
-      <button type='button' onClick={this.signUp}>Sign Up for event</button>
+      <button type='button' onClick={()=> this.signUp(event)}>Sign Up for event</button>
       </>
     )
   }

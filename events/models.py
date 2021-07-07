@@ -11,5 +11,14 @@ class Event(models.Model):
     organizer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True)
     attendees = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='events', blank=True)
 
+
     def __str__(self):
         return self.name
+
+# class Attendance(models.Model):
+#     attendee = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+#     event = models.ForeignKey(Event, on_delete=models.CASCADE)
+#     date_joined = models.DateTimeField(auto_now=True)
+#
+#     def __str__(self):
+#         return self.name
