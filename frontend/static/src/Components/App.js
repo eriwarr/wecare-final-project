@@ -8,10 +8,12 @@ import Registration from './Registration';
 import CreateUserProfile from './CreateUserProfile';
 import Profile from './Profile';
 import EventList from './EventList';
+import EventLog from './eventLog';
+import CreateEvent from './createEvent'; 
 
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import EventLog from './eventLog';
+
 
 
 class App extends Component {
@@ -44,7 +46,7 @@ class App extends Component {
     if(response.ok) {
       const data = await response.json().catch(handleError);
       Cookies.set('Authorization', `Token ${data.key}`);
-      console.log(data)
+      localStorage.setItem("isOrganizer", data.user.is_organizer);
       this.props.history.push('/');
     } else {
       //throw error
@@ -64,6 +66,7 @@ class App extends Component {
     if(response.ok) {
       Cookies.remove('Authorization');
       this.props.history.push('/');
+      localStorage.removeItem("isOrganizer");
     }
   }
 
@@ -131,6 +134,9 @@ class App extends Component {
             </Route>
             <Route path='/eventlog'>
               <EventLog/>
+            </Route>
+            <Route path='/createEvent'>
+              <CreateEvent/>
             </Route>
           </Switch>
         </>

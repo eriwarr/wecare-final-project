@@ -21,6 +21,7 @@ class Profile extends Component {
     fetch('api/v1/users/profiles/user')
     .then(response => response.json())
     .then(data => this.setState({profile: data}));
+
   }
 
   input(event) {
@@ -60,6 +61,8 @@ class Profile extends Component {
   }
 
   render() {
+    let isOrganizer = localStorage.getItem("isOrganizer")
+
     return(
       <form onSubmit={this.editProfile}>
         <div className="container">
@@ -82,11 +85,9 @@ class Profile extends Component {
                 ? <button type="submit" className="btn btn-primary edit-profile">Save Profile</button>
                 : <button type="button" key="eric" className="btn btn-primary edit-profile" onClick={()=> this.setState({isEditing: true})}>Edit Profile</button>
               }
-              <div>Saved Upcoming Events</div>
-              <div>Favorites</div>
-              <Link className="btn btn-primary edit-profile" to='/eventlog'>See your Event Log</Link>
+              <div><Link className="btn btn-primary edit-profile" to='/eventlog'>See your Event Log</Link></div>
               <button className="btn btn-primary edit-profile" onClick={()=> this.props.handleNavigation('user-profile-articles')}>See Upcoming Events in Your Area</button>
-              <Link className="btn btn-primary edit-profile" onClick={()=> this.props.handleNavigation('gallery')}>See Gallery Posts</Link>
+              {isOrganizer === 'true' && <Link className="btn btn-primary edit-profile" to='/createEvent'>Create A New Event</Link>}
             </div>
           </div>
         </div>

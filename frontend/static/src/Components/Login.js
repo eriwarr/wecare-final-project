@@ -9,7 +9,7 @@ class Login extends Component {
       username: '',
       email: '',
       password: '',
-     
+
     }
     this.handleInput = this.handleInput.bind(this);
     this.submit = this.submit.bind(this);

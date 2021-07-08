@@ -11,6 +11,6 @@ class Profile(models.Model):
     username = models.CharField(max_length=255)
     profile_picture = models.ImageField(upload_to='profiles/', default='profiles/volunteerdefault.jpeg')
 
-
     def __str__(self):
         return self.username
+        

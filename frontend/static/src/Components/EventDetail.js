@@ -33,7 +33,7 @@ class EventDetail extends Component {
 
   render() {
     const event = this.props.event
-    console.log(event)
+    
     return (
       <>
       <p>Organizer: {event.owner}</p>
