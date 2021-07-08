@@ -13,13 +13,14 @@ class CreateEvent extends Component {
       category: null,
       start: '',
       end: new Date(),
+      address: '',
       city: '',
-      state: '',
       zipcode: '',
     }
     this.input = this.input.bind(this);
     this.dateChange = this.dateChange.bind(this);
     this.dateEndChange = this.dateEndChange.bind(this);
+    this.newEvent = this.newEvent.bind(this);
   }
 
   input(event){
@@ -34,10 +35,14 @@ class CreateEvent extends Component {
     this.setState({endDate: date})
   }
 
+  newEvent() {
+
+  }
+
   render() {
     return (
       <div className="signup-form new-post">
-        <form onSubmit={this.addPost}>
+        <form onSubmit={this.newEvent}>
           <h2>New Event</h2>
             <Dropdown className="form-group">
               <Dropdown.Toggle variant="success" id="dropdown-basic">
@@ -46,24 +51,46 @@ class CreateEvent extends Component {
                   :  <span>Choose a Category</span>
                 }
               </Dropdown.Toggle>
-
               <Dropdown.Menu>
-                <Dropdown.Item onClick={()=> this.setState({category: "Robotics"})}>Robotics</Dropdown.Item>
-                <Dropdown.Item onClick={()=> this.setState({category: "Machine Learning"})}>Machine Learning</Dropdown.Item>
-                <Dropdown.Item onClick={()=> this.setState({category: "Health Care"})}>Health Care</Dropdown.Item>
-                <Dropdown.Item onClick={()=> this.setState({category: "FinTech"})}>FinTech</Dropdown.Item>
-                <Dropdown.Item onClick={()=> this.setState({category: "AgriTech"})}>AgriTech</Dropdown.Item>
-                <Dropdown.Item onClick={()=> this.setState({category: "Computer Security"})}>Computer Security</Dropdown.Item>
+                <Dropdown.Item onClick={()=> this.setState({category: "Community Development"})}>Community Development</Dropdown.Item>
+                <Dropdown.Item onClick={()=> this.setState({category: "Animals"})}>Animals</Dropdown.Item>
+                <Dropdown.Item onClick={()=> this.setState({category: "Children and Youth"})}>Children and Youth</Dropdown.Item>
+                <Dropdown.Item onClick={()=> this.setState({category: "Environment"})}>Environment</Dropdown.Item>
+                <Dropdown.Item onClick={()=> this.setState({category: "Health"})}>Health</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
             <div className="form-group">
-              <input className="form-control" name="name" value={this.state.name} placeholder="What is your event's name?" required="required" onChange={this.input}/>
+            <label htmlFor="name" className="form-label">What is your event's name?</label>
+              <input className="form-control" name="name" value={this.state.name} required="required" onChange={this.input}/>
             </div>
             <div className="form-group">
+              <label htmlFor="start" className="form-label">When does your event start?</label>
               <input className="form-control" type="datetime-local" name="start" value={this.state.start} required="required" onChange={this.dateChange}/>
             </div>
             <div className="form-group">
+            <label htmlFor="end" className="form-label">When does your event end?</label>
               <input className="form-control" type="datetime-local" name="end" value={this.state.end} required="required" onChange={this.dateChange}/>
+            </div>
+            <div class="form-group">
+              <label for="inputAddress">Address</label>
+              <input type="text" class="form-control" id="inputAddress" name="address" value={this.state.address} placeholder="1234 Main St"/>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputCity">City</label>
+                <input type="text" class="form-control" id="inputCity"/>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputState">State</label>
+                <select id="inputState" class="form-control">
+                  <option selected>Choose...</option>
+                  <option>...</option>
+                </select>
+              </div>
+              <div class="form-group col-md-3">
+                <label for="inputZip">Zip</label>
+                <input type="text" class="form-control" id="inputZip"/>
+              </div>
             </div>
             <div className="form-group">
               <button type="submit" className="btn btn-success btn-lg btn-block">Submit</button>
