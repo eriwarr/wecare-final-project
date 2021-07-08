@@ -9,7 +9,8 @@ import CreateUserProfile from './CreateUserProfile';
 import Profile from './Profile';
 import EventList from './EventList';
 import EventLog from './eventLog';
-import CreateEvent from './createEvent'; 
+import CreateEvent from './createEvent';
+import OrganizerEvents from './organizerEvents';
 
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -30,7 +31,7 @@ class App extends Component {
 
   async login(user) {
 
-    <Redirect to="/"/>
+
 
     const options = {
       method: 'POST',
@@ -46,7 +47,9 @@ class App extends Component {
     if(response.ok) {
       const data = await response.json().catch(handleError);
       Cookies.set('Authorization', `Token ${data.key}`);
+      console.log(data.user)
       localStorage.setItem("isOrganizer", data.user.is_organizer);
+      // localStorage.setItem("isOwner", data.user.is_owner);
       this.props.history.push('/');
     } else {
       //throw error
@@ -137,6 +140,9 @@ class App extends Component {
             </Route>
             <Route path='/createEvent'>
               <CreateEvent/>
+            </Route>
+            <Route path='/organizerEvents'>
+              <OrganizerEvents/>
             </Route>
           </Switch>
         </>

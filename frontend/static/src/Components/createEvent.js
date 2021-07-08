@@ -1,7 +1,8 @@
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
-import DateTimeRangePicker from '@wojtekmaj/react-datetimerange-picker'
+import DateTimeRangePicker from '@wojtekmaj/react-datetimerange-picker';
+import Cookies from 'js-cookie';
 
 
 
@@ -12,14 +13,14 @@ class CreateEvent extends Component {
       name: '',
       category: null,
       start: '',
-      end: new Date(),
+      end: '',
       address: '',
       city: '',
+      state: '',
       zipcode: '',
     }
     this.input = this.input.bind(this);
     this.dateChange = this.dateChange.bind(this);
-    this.dateEndChange = this.dateEndChange.bind(this);
     this.newEvent = this.newEvent.bind(this);
   }
 
@@ -31,12 +32,18 @@ class CreateEvent extends Component {
     this.setState({ [event.target.name]: event.target.value })
   }
 
-  dateEndChange(date) {
-    this.setState({endDate: date})
-  }
-
-  newEvent() {
-
+  newEvent(event) {
+    event.preventDefault();
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': Cookies.get('csrftoken'),
+      },
+      body: JSON.stringify(this.state),
+    }
+    fetch('api/v1/events/', options)
+    .then(response => response.json());
   }
 
   render() {
@@ -65,31 +72,38 @@ class CreateEvent extends Component {
             </div>
             <div className="form-group">
               <label htmlFor="start" className="form-label">When does your event start?</label>
-              <input className="form-control" type="datetime-local" name="start" value={this.state.start} required="required" onChange={this.dateChange}/>
+              <input className="form-control" type="datetime-local" name="start" value={this.state.start} required="required" onChange={this.dateChange} format= "yyyy-MM-ddThh:mm"/>
             </div>
             <div className="form-group">
             <label htmlFor="end" className="form-label">When does your event end?</label>
-              <input className="form-control" type="datetime-local" name="end" value={this.state.end} required="required" onChange={this.dateChange}/>
+              <input className="form-control" type="datetime-local" name="end" value={this.state.end} required="required" onChange={this.dateChange} format= "yyyy-MM-ddThh:mm"/>
             </div>
-            <div class="form-group">
-              <label for="inputAddress">Address</label>
-              <input type="text" class="form-control" id="inputAddress" name="address" value={this.state.address} placeholder="1234 Main St"/>
+            <div className="form-group">
+              <label htmlFor="inputAddress">Address</label>
+              <input type="text" className="form-control" id="inputAddress" name="address" value={this.state.address} placeholder="1234 Main St" onChange={this.input}/>
             </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="inputCity">City</label>
-                <input type="text" class="form-control" id="inputCity"/>
+            <div className="form-row">
+              <div className="form-group col-md-6">
+                <label htmlFor="inputCity">City</label>
+                <input type="text" className="form-control" id="inputCity" name="city" value={this.state.city} onChange={this.input}/>
               </div>
-              <div class="form-group col-md-4">
-                <label for="inputState">State</label>
-                <select id="inputState" class="form-control">
-                  <option selected>Choose...</option>
-                  <option>...</option>
-                </select>
+              <div className="form-group col-md-3">
+                <label htmlFor="inputState">State</label>
+                <Dropdown className="form-group">
+                  <Dropdown.Toggle variant="success" id="dropdown-basic">
+                    {this.state.state
+                      ?  <span>{this.state.state}</span>
+                      :  <span>Choose state</span>
+                    }
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item onClick={()=> this.setState({state: "SC"})}>SC</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
               </div>
-              <div class="form-group col-md-3">
-                <label for="inputZip">Zip</label>
-                <input type="text" class="form-control" id="inputZip"/>
+              <div className="form-group col-md-3">
+                <label htmlFor="inputZip">Zip</label>
+                <input type="text" className="form-control" id="inputZip" name="zipcode" value={this.state.value} onChange={this.input}/>
               </div>
             </div>
             <div className="form-group">

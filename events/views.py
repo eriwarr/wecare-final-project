@@ -7,8 +7,6 @@ from rest_framework import status
 from rest_framework.response import Response
 # Create your views here.
 
-
-
 class EventListView(generics.ListCreateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
@@ -43,3 +41,11 @@ class RegisterAttendeeAPIView(views.APIView):
         user = self.request.user
         event.attendees.add(user)
         return Response('Resource updated successfully!', status=status.HTTP_200_OK)
+
+class OrganizerEventsView(generics.ListCreateAPIView):
+    serializer_class = EventSerializer
+    permission_classes = (IsAuthOrReadOnly,)
+
+    def get_queryset(self):
+        organizer = self.request.user
+        return Event.objects.filter(organizer=organizer)

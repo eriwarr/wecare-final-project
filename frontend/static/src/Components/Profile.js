@@ -85,9 +85,12 @@ class Profile extends Component {
                 ? <button type="submit" className="btn btn-primary edit-profile">Save Profile</button>
                 : <button type="button" key="eric" className="btn btn-primary edit-profile" onClick={()=> this.setState({isEditing: true})}>Edit Profile</button>
               }
-              <div><Link className="btn btn-primary edit-profile" to='/eventlog'>See your Event Log</Link></div>
-              <button className="btn btn-primary edit-profile" onClick={()=> this.props.handleNavigation('user-profile-articles')}>See Upcoming Events in Your Area</button>
-              {isOrganizer === 'true' && <Link className="btn btn-primary edit-profile" to='/createEvent'>Create A New Event</Link>}
+
+              {isOrganizer === 'false' && <div><Link className="btn btn-primary edit-profile" to='/eventlog'>See your Event Log</Link></div>}
+              {isOrganizer === 'false' && <button className="btn btn-primary edit-profile">See Upcoming Events in Your Area</button>}
+              {isOrganizer === 'false' && <button className="btn btn-primary edit-profile">See Your Gallery</button>}
+              {isOrganizer === 'true' && <div><Link className="btn btn-primary edit-profile" to='/organizerEvents'>See Your Events</Link></div>}
+              {isOrganizer === 'true' && <div><Link className="btn btn-primary edit-profile" to='/createEvent'>Create A New Event</Link></div>}
             </div>
           </div>
         </div>
