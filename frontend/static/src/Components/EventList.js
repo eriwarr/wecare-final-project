@@ -18,6 +18,7 @@ class EventList extends Component {
     fetch('api/v1/events/')
     .then(response => response.json())
     .then(data => this.setState({ events: data }));
+
   }
 
   deleteEvent(id){

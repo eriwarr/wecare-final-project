@@ -29,4 +29,4 @@ class CustomRegisterSerializer(RegisterSerializer):
 
     def custom_signup(self,request,user):
         user.is_organizer=self.validated_data.get("is_organizer")
-        user.save(update_fields=["phone_number"])
+        user.save()

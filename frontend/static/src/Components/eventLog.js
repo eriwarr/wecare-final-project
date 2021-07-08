@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class EventLog extends Component {
   constructor(props) {
@@ -17,10 +18,13 @@ class EventLog extends Component {
   render() {
     const eventLogDisplay = this.state.eventLog.map((event) => (
       <li key={event.id}>
-      <p>{event.name}</p>
-      <p>{event.event_date}</p>
-      <p>Organizer: {event.owner}</p>
+      <p>{event.name} hosted by {event.owner}</p>
+      <p>{event.start}-{event.end}</p>
+      <p>{event.address} {event.city},{event.state} {event.zip_code}</p>
+      <p>Attendance: pending confirmation</p>
+      <Link to='/'>Submit Feedback</Link>
       </li>
+
     ))
     return (
       <ul>{eventLogDisplay}</ul>

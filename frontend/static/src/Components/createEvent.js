@@ -1,9 +1,7 @@
 import { Component } from 'react';
-import { Link } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
-import DateTimeRangePicker from '@wojtekmaj/react-datetimerange-picker';
 import Cookies from 'js-cookie';
-
+import { withRouter} from 'react-router-dom';
 
 
 class CreateEvent extends Component {
@@ -44,6 +42,7 @@ class CreateEvent extends Component {
     }
     fetch('api/v1/events/', options)
     .then(response => response.json());
+    this.props.history.push('/events');
   }
 
   render() {
@@ -114,4 +113,4 @@ class CreateEvent extends Component {
     )
   }
 }
-export default CreateEvent
+export default withRouter(CreateEvent);

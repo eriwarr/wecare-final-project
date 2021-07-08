@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { BrowserRouter as Route} from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 class Login extends Component {

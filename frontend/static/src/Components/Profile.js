@@ -55,7 +55,7 @@ class Profile extends Component {
       },
       body: formData,
     }
-      const response = await fetch('api/v1/users/profiles/user/', options)
+      await fetch('api/v1/users/profiles/user/', options)
       this.setState({isEditing: false});
 
   }

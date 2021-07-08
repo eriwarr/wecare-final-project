@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import Cookies from 'js-cookie';
+import { withRouter} from 'react-router-dom';
 
 class CreateUserProfile extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class CreateUserProfile extends Component {
       this.setState({ preview: reader.result, });
     }
     reader.readAsDataURL(file);
-    console.log('testing')
+
   }
 
   async submit(event) {
@@ -44,10 +45,11 @@ class CreateUserProfile extends Component {
       body: formData,
     }
     await fetch('api/v1/users/profiles/', options);
+    this.props.history.push('/profile')
     }
 
   render() {
-    
+
     return (
       <>
       <form onSubmit={this.submit}>
@@ -66,4 +68,4 @@ class CreateUserProfile extends Component {
   );
   }
 }
-export default CreateUserProfile
+export default withRouter(CreateUserProfile);

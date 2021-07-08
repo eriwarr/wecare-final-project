@@ -1,6 +1,6 @@
 import './App.css';
 import Cookies from 'js-cookie';
-import { Route, Switch, Redirect, withRouter, Link} from 'react-router-dom';
+import { Route, Switch, withRouter, Link} from 'react-router-dom';
 import { Component } from 'react';
 
 import Login from './Login';
