@@ -13,6 +13,7 @@ import CreateEvent from './createEvent';
 import OrganizerEvents from './organizerEvents';
 import CreateReview from './createReview';
 import EventReviews from './eventReviews';
+import VolunteerList from './volunteerList';
 
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -151,6 +152,9 @@ class App extends Component {
             </Route>
             <Route path='/eventReviews'>
               <EventReviews/>
+            </Route>
+            <Route path='/volunteerList'>
+              <VolunteerList/>
             </Route>
           </Switch>
         </>

@@ -1,8 +1,7 @@
 import { Component } from 'react';
 import Moment from 'react-moment';
 import Cookies from 'js-cookie';
-import AttendeeList from './attendeeList';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
 
 class EventDetail extends Component {
   constructor(props) {
@@ -39,7 +38,7 @@ class EventDetail extends Component {
   render() {
     const event = this.props.event
     let isOrganizer = localStorage.getItem("isOrganizer")
-    console.log(event.organizer)
+
     return (
       <>
       <p>Organizer: {event.owner}</p>
@@ -48,8 +47,9 @@ class EventDetail extends Component {
       <p><time>Date: <Moment format="MM/DD/YYYY">{event.start}</Moment></time></p>
       <p><time><Moment format="h:mm a">{event.start}</Moment></time>-<time><Moment format="h:mm a">{event.end}</Moment></time></p>
       <p>{event.address} {event.city},{event.state} {event.zipcode}</p>
+      {event.has_owner_permissions && <p>You have {event.attendance.length} volunteer(s) attending this event</p>}
       {isOrganizer === 'false' && <div><button type='button' onClick={()=> this.signUp(event)}>Sign Up for event</button></div>}
-      {isOrganizer === 'true' && <div><button type='button' onClick={()=> this.signUp(event)}>Sign Up for event</button></div>}
+      {event.has_owner_permissions && <div><Link className="btn btn-primary edit-profile" to='/volunteerList'>See Attendees</Link></div>}
       {event.has_owner_permissions && <div><button type='button' onClick={()=> this.signUp(event)}>Edit Event</button></div>}
       <hr/>
       </>

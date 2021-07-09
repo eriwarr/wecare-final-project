@@ -6,6 +6,7 @@ urlpatterns = [
     path('<int:pk>/', views.EventDetailAPIView.as_view()),
     path('event_log/', views.UserEventLogView.as_view()),
     path('organizer_event/', views.OrganizerEventsView.as_view()),
+    path('organizer_event/<int:pk>/', views.OrganizerEventsView.as_view()),
     path('attendance/', views.AttendanceAPIView.as_view()),
     path('attendance/<int:pk>/', views.AttendanceDetailAPIView.as_view()),
 ]
