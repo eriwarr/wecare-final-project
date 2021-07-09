@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import Moment from 'react-moment';
 import Cookies from 'js-cookie';
+import AttendeeList from './attendeeList';
 
 class EventDetail extends Component {
   constructor(props) {
@@ -28,13 +29,13 @@ class EventDetail extends Component {
       },
     }
       fetch(`api/v1/events/${id}/attendees/add/`, options)
-      .then(response => console.log(response))
+
   }
 
   render() {
     const event = this.props.event
     let isOrganizer = localStorage.getItem("isOrganizer")
-    console.log(event.attendees)
+    const volunteers = event.attendees
     return (
       <>
       <p>Organizer: {event.owner}</p>
@@ -45,6 +46,7 @@ class EventDetail extends Component {
       <p>{event.address} {event.city},{event.state} {event.zipcode}</p>
       {isOrganizer === 'false' && <div><button type='button' onClick={()=> this.signUp(event)}>Sign Up for event</button></div>}
       {event.has_owner_permissions && <div><button type='button' onClick={()=> this.signUp(event)}>Edit Event</button></div>}
+      <AttendeeList owner={event.has_owner_permissions} volunteers={volunteers}/>
       <hr/>
       </>
     )

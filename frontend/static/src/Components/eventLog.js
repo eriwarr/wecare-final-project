@@ -1,5 +1,6 @@
 import { Component } from 'react';
-import { Link } from 'react-router-dom';
+import CreateReview from './createReview';
+
 
 class EventLog extends Component {
   constructor(props) {
@@ -7,6 +8,7 @@ class EventLog extends Component {
     this.state = {
       eventLog: [],
     }
+
   }
 
   componentDidMount() {
@@ -18,16 +20,21 @@ class EventLog extends Component {
   render() {
     const eventLogDisplay = this.state.eventLog.map((event) => (
       <li key={event.id}>
-      <p>{event.name} hosted by {event.owner}</p>
-      <p>{event.start}-{event.end}</p>
-      <p>{event.address} {event.city},{event.state} {event.zip_code}</p>
-      <p>Attendance: pending confirmation</p>
-      <Link to='/'>Submit Feedback</Link>
-      </li>
+        <div className="container">
+          <h4>{event.name} hosted by {event.owner}</h4>
+            <div className="card">
+              <div className="card-body">
+                <p className="card-text">{event.start}-{event.end}. {event.address} {event.city},{event.state} {event.zip_code}</p>
+                <p className="card-text">Attendance: pending confirmation</p>
+                <CreateReview id={event.id}/> <button>Remove me from this event</button>
+            </div>
+          </div>
+        </div>
+    </li>
 
     ))
     return (
-      <ul>{eventLogDisplay}</ul>
+      <>{eventLogDisplay}</>
     )
   }
 }

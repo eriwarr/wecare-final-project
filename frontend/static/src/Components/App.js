@@ -11,6 +11,8 @@ import EventList from './EventList';
 import EventLog from './eventLog';
 import CreateEvent from './createEvent';
 import OrganizerEvents from './organizerEvents';
+import CreateReview from './createReview';
+import EventReviews from './eventReviews';
 
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -143,6 +145,12 @@ class App extends Component {
             </Route>
             <Route path='/organizerEvents'>
               <OrganizerEvents/>
+            </Route>
+            <Route path='/createReview'>
+              <CreateReview/>
+            </Route>
+            <Route path='/eventReviews'>
+              <EventReviews/>
             </Route>
           </Switch>
         </>
