@@ -29,12 +29,13 @@ class UserEventLogView(generics.ListCreateAPIView):
         return Attendance.objects.filter(attendee=attendee)
 
 class OrganizerEventsView(generics.ListCreateAPIView):
-    serializer_class = AttendanceCreateSerializer
+    serializer_class = EventSerializer
     permission_classes = (IsAuthOrReadOnly,)
+    queryset = Event.objects.all()
 
-    def get_queryset(self):
-        organizer = self.request.user
-        return Attendance.objects.filter(organization=organizer)
+    # def get_queryset(self):
+    #     organizer = self.request.user
+        # return Event.objects.filter(organizer=organizer)
 
 class AttendanceAPIView(generics.ListCreateAPIView):
     queryset = Attendance.objects.all()
@@ -48,6 +49,15 @@ class AttendanceDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Attendance.objects.all()
     serializer_class = AttendanceCreateSerializer
     permissions = (IsAuthOrReadOnly,)
+
+# class OrganizerEventsView(generics.RetrieveUpdateDestroyAPIView):
+#     serializer_class = AttendanceCreateSerializer
+#     permission_classes = (IsAuthOrReadOnly,)
+#
+#     def get_queryset(self):
+#         organizer = self.request.user
+#         return Attendance.objects.filter(organization=organizer)
+
 
 # class EventCategoryListView(generics.ListCreateAPIView):
 #     serializer_class = EventSerializer

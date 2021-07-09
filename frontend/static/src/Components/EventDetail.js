@@ -2,6 +2,7 @@ import { Component } from 'react';
 import Moment from 'react-moment';
 import Cookies from 'js-cookie';
 import AttendeeList from './attendeeList';
+import { Link } from 'react-router-dom'; 
 
 class EventDetail extends Component {
   constructor(props) {
@@ -48,6 +49,7 @@ class EventDetail extends Component {
       <p><time><Moment format="h:mm a">{event.start}</Moment></time>-<time><Moment format="h:mm a">{event.end}</Moment></time></p>
       <p>{event.address} {event.city},{event.state} {event.zipcode}</p>
       {isOrganizer === 'false' && <div><button type='button' onClick={()=> this.signUp(event)}>Sign Up for event</button></div>}
+      {isOrganizer === 'true' && <div><button type='button' onClick={()=> this.signUp(event)}>Sign Up for event</button></div>}
       {event.has_owner_permissions && <div><button type='button' onClick={()=> this.signUp(event)}>Edit Event</button></div>}
       <hr/>
       </>

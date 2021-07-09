@@ -19,7 +19,6 @@ class Event(models.Model):
         return self.name
 
 class Attendance(models.Model):
-    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name="attendance")
     attendee = models.ForeignKey(settings.AUTH_USER_MODEL, related_name= "attendee", on_delete=models.CASCADE, blank=True)
     confirmed = models.BooleanField(default=False)
-    organization = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="organizer", on_delete=models.CASCADE, null=True)
