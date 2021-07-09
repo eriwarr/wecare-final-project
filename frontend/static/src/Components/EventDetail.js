@@ -20,22 +20,25 @@ class EventDetail extends Component {
   }
 
   signUp(event) {
-    const id = event.id
+    const attendEvent = {
+      event: event.id,
+    }
     const options = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'X-CSRFToken': Cookies.get('csrftoken'),
       },
+      body: JSON.stringify(attendEvent),
     }
-      fetch(`api/v1/events/${id}/attendees/add/`, options)
-
+      fetch(`api/v1/events/attendance/`, options)
+      .then(response => response.json());
   }
 
   render() {
     const event = this.props.event
     let isOrganizer = localStorage.getItem("isOrganizer")
-    const volunteers = event.attendees
+    console.log(event.organizer)
     return (
       <>
       <p>Organizer: {event.owner}</p>
@@ -46,7 +49,6 @@ class EventDetail extends Component {
       <p>{event.address} {event.city},{event.state} {event.zipcode}</p>
       {isOrganizer === 'false' && <div><button type='button' onClick={()=> this.signUp(event)}>Sign Up for event</button></div>}
       {event.has_owner_permissions && <div><button type='button' onClick={()=> this.signUp(event)}>Edit Event</button></div>}
-      <AttendeeList owner={event.has_owner_permissions} volunteers={volunteers}/>
       <hr/>
       </>
     )

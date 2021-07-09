@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import CreateReview from './createReview';
-
+import Moment from 'react-moment';
+import Cookies from 'js-cookie';
 
 class EventLog extends Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class EventLog extends Component {
     this.state = {
       eventLog: [],
     }
-
+    this.removeVolunteer = this.removeVolunteer.bind(this);
   }
 
   componentDidMount() {
@@ -17,16 +18,40 @@ class EventLog extends Component {
     .then(data => this.setState({eventLog: data }));
   }
 
+  removeVolunteer(id) {
+      const options = {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': Cookies.get('csrftoken'),
+        },
+      }
+      fetch(`api/v1/events/attendance/${id}/`, options)
+      .then(response => {
+        if(response.ok) {
+          const eventLog = [ ...this.state.eventLog];
+          const index = eventLog.findIndex(event => event.id === id);
+          eventLog.splice(index, 1);
+          this.setState({ eventLog });
+        }
+      })
+  }
+
   render() {
     const eventLogDisplay = this.state.eventLog.map((event) => (
       <li key={event.id}>
         <div className="container">
-          <h4>{event.name} hosted by {event.owner}</h4>
+          <h4>{event.event.name} hosted by {event.event.organizer.username}</h4>
             <div className="card">
               <div className="card-body">
-                <p className="card-text">{event.start}-{event.end}. {event.address} {event.city},{event.state} {event.zip_code}</p>
-                <p className="card-text">Attendance: pending confirmation</p>
-                <CreateReview id={event.id}/> <button>Remove me from this event</button>
+                <p><time>Date: <Moment format="MM/DD/YYYY">{event.event.start}</Moment></time></p>
+                <p><time><Moment format="h:mm a">{event.event.start}</Moment></time>-<time><Moment format="h:mm a">{event.event.end}</Moment></time></p>
+                <p className="card-text">{event.event.address} {event.event.city},{event.event.state} {event.event.zip_code}</p>
+                {event.confirmed
+                  ? <p className="card-text">Attendance: confirmed</p>
+                  : <p className="card-text">Attendance: pending confirmation</p>
+                }
+                <CreateReview id={event.id}/> <button type="buton" onClick={()=> {this.removeVolunteer(event.id)}}>Remove me from this event</button>
             </div>
           </div>
         </div>
