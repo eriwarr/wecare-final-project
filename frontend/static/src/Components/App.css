@@ -171,8 +171,9 @@ a {
 }
 
 .edit-profile {
-  background-color: #353A3F;
+  background-color: #F9F9FA;
   border: #353A3F;
+  margin: 10px; 
 }
 
 .nav-btn {

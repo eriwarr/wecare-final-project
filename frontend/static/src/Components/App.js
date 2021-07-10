@@ -52,8 +52,8 @@ class App extends Component {
       Cookies.set('Authorization', `Token ${data.key}`);
       console.log(data.user)
       localStorage.setItem("isOrganizer", data.user.is_organizer);
-      // localStorage.setItem("isOwner", data.user.is_owner);
-      this.props.history.push('/');
+      localStorage.setItem("user", data.user.username);
+      this.props.history.push('/profile');
     } else {
       //throw error
     }
@@ -73,6 +73,7 @@ class App extends Component {
       Cookies.remove('Authorization');
       this.props.history.push('/');
       localStorage.removeItem("isOrganizer");
+      localStorage.removeItem("user");
     }
   }
 
@@ -102,7 +103,7 @@ class App extends Component {
   }
 
   render() {
-
+    let user = localStorage.getItem("user")
     return (
         <>
           <Navbar className='nav-header' bg="light" variant="dark">
@@ -118,6 +119,7 @@ class App extends Component {
               : <Link className="btn text-decoration-none" to='/login'>Login</Link>
 
               }
+              {user && `Welcome back ${user}!`}
          </Navbar>
           <Switch>
             <Route exact path='/'>

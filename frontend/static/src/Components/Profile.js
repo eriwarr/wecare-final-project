@@ -92,6 +92,7 @@ class Profile extends Component {
               {isOrganizer === 'false' && <button className="btn btn-primary edit-profile">See Your Gallery</button>}
               {isOrganizer === 'true' && <div><Link className="btn btn-primary edit-profile" to='/organizerEvents'>See Your Events</Link></div>}
               {isOrganizer === 'true' && <div><Link className="btn btn-primary edit-profile" to='/createEvent'>Create A New Event</Link></div>}
+              {isOrganizer === 'true' && <div><Link className="btn btn-primary edit-profile" to='/volunteerList'>See Attendees</Link></div>}
             </div>
           </div>
         </div>

@@ -38,7 +38,6 @@ class EventDetail extends Component {
   render() {
     const event = this.props.event
     let isOrganizer = localStorage.getItem("isOrganizer")
-
     return (
       <>
       <p>Organizer: {event.owner}</p>
@@ -48,8 +47,8 @@ class EventDetail extends Component {
       <p><time><Moment format="h:mm a">{event.start}</Moment></time>-<time><Moment format="h:mm a">{event.end}</Moment></time></p>
       <p>{event.address} {event.city},{event.state} {event.zipcode}</p>
       {event.has_owner_permissions && <p>You have {event.attendance.length} volunteer(s) attending this event</p>}
+
       {isOrganizer === 'false' && <div><button type='button' onClick={()=> this.signUp(event)}>Sign Up for event</button></div>}
-      {event.has_owner_permissions && <div><Link className="btn btn-primary edit-profile" to='/volunteerList'>See Attendees</Link></div>}
       {event.has_owner_permissions && <div><button type='button' onClick={()=> this.signUp(event)}>Edit Event</button></div>}
       <hr/>
       </>
