@@ -34,7 +34,7 @@ class EventDetail extends Component {
   render() {
     const event = this.props.event
     let isOrganizer = localStorage.getItem("isOrganizer")
-
+    console.log(event)
     return (
       <>
       <div className="container">
@@ -57,7 +57,7 @@ class EventDetail extends Component {
             </div>
         </div>
     </div>
-    </div>
+  </div>
       </>
     )
   }

@@ -15,6 +15,8 @@ import CreateReview from './createReview';
 import EventReviews from './eventReviews';
 import VolunteerList from './volunteerList';
 import Gallery from './gallery';
+import OrganizerReviews from './organizerReviews';
+import MapContainer from './maps';
 
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -51,7 +53,6 @@ class App extends Component {
     if(response.ok) {
       const data = await response.json().catch(handleError);
       Cookies.set('Authorization', `Token ${data.key}`);
-      console.log(data.user)
       localStorage.setItem("isOrganizer", data.user.is_organizer);
       localStorage.setItem("user", data.user.username);
       this.props.history.push('/profile');
@@ -126,6 +127,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/'>
               <div>I am the homepage</div>
+              <MapContainer/>
             </Route>
             <Route path='/login'>
               <Login login={this.login}/>
@@ -162,6 +164,9 @@ class App extends Component {
             </Route>
             <Route path='/gallery'>
               <Gallery/>
+            </Route>
+            <Route path='/organizerReviews'>
+              <OrganizerReviews/>
             </Route>
           </Switch>
         </>

@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import Cookies from 'js-cookie';
+import { withRouter } from 'react-router-dom';
 
 class VolunteerList extends Component {
   constructor(props){
@@ -31,6 +32,7 @@ class VolunteerList extends Component {
     }
     fetch(`api/v1/events/attendance/${id}/`, options)
     .then(response => response.json())
+      this.props.history.push('/profile')
   }
 
   render() {
@@ -60,4 +62,4 @@ class VolunteerList extends Component {
     )
   }
 }
-export default VolunteerList;
+export default withRouter(VolunteerList);

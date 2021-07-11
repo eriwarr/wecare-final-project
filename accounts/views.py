@@ -3,7 +3,8 @@ from .models import Profile
 from .serializers import ProfileSerializer
 from django.shortcuts import render, get_object_or_404
 
-# from .permissions import IsAuthOrReadOnly
+
+
 
 # Create your views here.
 class ProfileListAPIView(generics.ListCreateAPIView):
@@ -12,6 +13,10 @@ class ProfileListAPIView(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+class ProfileViewAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
 
 class ProfileDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ProfileSerializer

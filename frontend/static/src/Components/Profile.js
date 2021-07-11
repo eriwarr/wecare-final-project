@@ -60,7 +60,7 @@ class Profile extends Component {
   }
 
   render() {
-  
+
     let isOrganizer = localStorage.getItem("isOrganizer")
     let events = localStorage.getItem("events")
     let volunteers = localStorage.getItem("volunteers")
@@ -90,6 +90,7 @@ class Profile extends Component {
                                     </div>
                                     <div className="media">
                                     {isOrganizer === 'false' && <Link to='/gallery'>See your gallery</Link>}
+                                    {isOrganizer === 'true' && <Link to='/organizerReviews'>See Your Reviews</Link>}
                                     </div>
                                 </div>
                                 <div className="col-md-6">

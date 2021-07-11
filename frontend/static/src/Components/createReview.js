@@ -20,9 +20,11 @@ class CreateReview extends Component {
     event.preventDefault();
     this.setState({ isEditing: false })
 
+
     const feedback = {
       feedback: this.state.feedback,
-      event: this.props.id
+      event: this.props.id,
+      organizer: this.props.organizerId,
     }
 
     const options = {

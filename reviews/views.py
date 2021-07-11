@@ -16,6 +16,14 @@ class UserReviewListView(generics.ListCreateAPIView):
         attendee = self.request.user
         return Review.objects.filter(author=self.request.user)
 
+class OrganizerReviewListView(generics.ListAPIView):
+    serializer_class = ReviewSerializer
+    permission_classes = (IsAuthOrReadOnly,)
+
+    def get_queryset(self):
+        organizer = self.request.user
+        return Review.objects.filter(organizer=organizer)
+
 class UserReviewDetailListView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer

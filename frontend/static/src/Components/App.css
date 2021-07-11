@@ -385,3 +385,8 @@ mark {
 .margin-10px-right {
     margin-right: 10px;
 }
+
+.map{
+  width: 500px;
+  height: 500px; 
+}
