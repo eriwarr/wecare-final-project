@@ -8,10 +8,10 @@ class EventList extends Component {
     this.state = {
       events: [],
     }
-    this.deleteEvent = this.deleteEvent.bind(this);
     this.updateEvent = this.updateEvent.bind(this);
     this.filterEvents = this.filterEvents.bind(this);
     this.showAll = this.showAll.bind(this);
+    this.deleteEvent = this.deleteEvent.bind(this);
   }
 
   componentDidMount() {
@@ -22,6 +22,7 @@ class EventList extends Component {
   }
 
   deleteEvent(id){
+    
     const options = {
     method: 'DELETE',
     headers: {
@@ -81,7 +82,7 @@ class EventList extends Component {
 
   render() {
     const eventListings = this.state.events.map((event) =>(
-      <EventDetail key={event.id} event={event} updateEvent={this.updateEvent}/>
+      <EventDetail key={event.id} event={event} updateEvent={this.updateEvent} deleteEvent={this.deleteEvent}/>
     ));
 
     return (

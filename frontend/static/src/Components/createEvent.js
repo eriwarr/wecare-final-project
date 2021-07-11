@@ -42,7 +42,7 @@ class CreateEvent extends Component {
     }
     fetch('api/v1/events/', options)
     .then(response => response.json());
-    this.props.history.push('/events');
+    this.props.history.push('/organizerEvents');
   }
 
   render() {

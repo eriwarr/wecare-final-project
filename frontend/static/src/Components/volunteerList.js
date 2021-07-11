@@ -37,11 +37,10 @@ class VolunteerList extends Component {
     const volunteers = this.state.volunteers.map((volunteer) =>(
       <li key={volunteer.id}>
         <div className="container">
-          <h4></h4>
             <div className="card">
               <div className="card-body">
-                <p className="card-text">{volunteer.name}</p>
-                <p className="card-text">{volunteer.volunteer}</p>
+                <p className="card-text">Your Event: {volunteer.name}</p>
+                <p className="card-text">Volunteer: {volunteer.volunteer}</p>
                 {!volunteer.confirmed
                   ? <button className="btn btn-primary edit-profile" onClick={()=> {this.confirmAttendance(volunteer.id)}}>Confirm Attendance</button>
                   : <p><strong>Attendance Confirmed by Organization</strong></p>

@@ -45,12 +45,17 @@ class OrganizerEventsDetailView(generics.RetrieveUpdateDestroyAPIView):
         return Event.objects.filter(organizer=organizer)
 
 class AttendanceAPIView(generics.ListCreateAPIView):
-    queryset = Attendance.objects.all()
+    # queryset = Attendance.objects.all()
     serializer_class = AttendanceCreateSerializer
     permissions = (IsAuthOrReadOnly,)
 
     def perform_create(self, serializer):
         serializer.save(attendee=self.request.user)
+
+    def get_queryset(self):
+        organizer = self.request.user
+        return Attendance.objects.filter(organizer=organizer)
+
 
 class AttendanceDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Attendance.objects.all()
