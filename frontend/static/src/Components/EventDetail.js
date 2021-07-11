@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import Moment from 'react-moment';
 import Cookies from 'js-cookie';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 
 class EventDetail extends Component {
@@ -34,7 +34,6 @@ class EventDetail extends Component {
   render() {
     const event = this.props.event
     let isOrganizer = localStorage.getItem("isOrganizer")
-    console.log(event)
     return (
       <>
       <div className="container">
@@ -43,7 +42,7 @@ class EventDetail extends Component {
             <div className="position-relative">
                 <img src="https://via.placeholder.com/450x280/FFB6C1/000000" alt=""/>
                 <div className="events-date">
-                    <time>Date: <Moment format="MM/DD/YYYY">{event.start}</Moment></time>
+                    <time><Moment format="MM/DD/YYYY">{event.start}</Moment></time>
                 </div>
             </div>
         </div>
@@ -53,7 +52,7 @@ class EventDetail extends Component {
                 <p><time><Moment format="h:mm a">{event.start}</Moment></time>-<time><Moment format="h:mm a">{event.end}</Moment></time> <span>({event.name})</span></p>
                 <p>{event.address} {event.city},{event.state} {event.zipcode}</p>
                 {event.has_owner_permissions && <p>You have {event.attendance.length} volunteer(s) attending this event</p>}
-                <a className="butn small margin-10px-top md-no-margin-top">{isOrganizer === 'false' && <button type='button' onClick={()=> this.signUp(event)}>Sign Up for event</button>} {event.has_owner_permissions && <button type='button' onClick={() => this.props.deleteEvent(event.id)}>Remove Event</button>} <i className="fas fa-long-arrow-alt-right margin-10px-left"></i></a>
+                {isOrganizer === 'false' && <button className="butn small margin-10px-top md-no-margin-top" type='button' onClick={()=> this.signUp(event)}>Sign Up for event</button>} {event.has_owner_permissions && <button type='button' onClick={() => this.props.deleteEvent(event.id)}>Remove Event</button>}
             </div>
         </div>
     </div>

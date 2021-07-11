@@ -1,4 +1,3 @@
-import Cookies from 'js-cookie';
 import { Component } from 'react';
 
 class OrganizerReviews extends Component {

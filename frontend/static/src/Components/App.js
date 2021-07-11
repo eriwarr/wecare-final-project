@@ -16,7 +16,8 @@ import EventReviews from './eventReviews';
 import VolunteerList from './volunteerList';
 import Gallery from './gallery';
 import OrganizerReviews from './organizerReviews';
-import MapContainer from './maps';
+import GoogleMap from './maps';
+
 
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -127,7 +128,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/'>
               <div>I am the homepage</div>
-              <MapContainer/>
+              <GoogleMap/>
             </Route>
             <Route path='/login'>
               <Login login={this.login}/>
