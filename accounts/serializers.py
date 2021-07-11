@@ -9,6 +9,9 @@ from rest_auth.registration.serializers import RegisterSerializer
 User = get_user_model()
 
 class ProfileSerializer(serializers.ModelSerializer):
+    email = serializers.ReadOnlyField(source='user.email')
+    first_name = serializers.ReadOnlyField(source='user.first_name')
+    last_name = serializers.ReadOnlyField(source='user.last_name')
     class Meta:
         model = Profile
         fields = '__all__'

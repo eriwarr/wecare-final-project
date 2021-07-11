@@ -7,6 +7,7 @@ from django.conf import settings
 
 class AttendanceCreateSerializer(serializers.ModelSerializer):
     volunteer = serializers.ReadOnlyField(source='attendee.username')
+    last_name = serializers.ReadOnlyField(source='attendee.last_name')
     name = serializers.ReadOnlyField(source='event.name')
 
     class Meta:

@@ -21,7 +21,6 @@ class Profile extends Component {
     fetch('api/v1/users/profiles/user')
     .then(response => response.json())
     .then(data => this.setState({profile: data}));
-
   }
 
   input(event) {
@@ -61,42 +60,91 @@ class Profile extends Component {
   }
 
   render() {
+  
     let isOrganizer = localStorage.getItem("isOrganizer")
-
+    let events = localStorage.getItem("events")
+    let volunteers = localStorage.getItem("volunteers")
+    let eventsAttended = localStorage.getItem("eventsAttended")
     return(
-      <form onSubmit={this.editProfile}>
-        <div className="container">
-          <h2>{this.state.profile.username}</h2>
-            <div className="card">
-              {this.state.isEditing
-                ? <input className="card-img-top" type="file" name="profilePicture" onChange={this.uploadImage}/>
-                : <img className="card-img-top" src={this.state.profile.profile_picture} alt="profile"/>
-              }
-              <div className="card-body">
-
-              {this.state.isEditing
-                ? <input className="card-title" type="text" name="username" value={this.state.username} onChange={this.input} placeholder={this.state.profile.username}></input>
-                : <h4 className="card-title">This is a placeholder to show volunteer ranking</h4>
-              }
-
-                <p className="card-text">Hi {this.state.profile.username}! Time to get blogging! Click view posts to see your contributions.</p>
-              {
-                this.state.isEditing
-                ? <button type="submit" className="btn btn-primary edit-profile">Save Profile</button>
-                : <button type="button" key="eric" className="btn btn-primary edit-profile" onClick={()=> this.setState({isEditing: true})}>Edit Profile</button>
-              }
-
-              {isOrganizer === 'false' && <div><Link className="btn btn-primary edit-profile" to='/eventlog'>See your Event Log</Link></div>}
-              {isOrganizer === 'false' && <div><Link className="btn btn-primary edit-profile" to='/eventReviews'>See the reviews you've written</Link></div>}
-              {isOrganizer === 'false' && <button className="btn btn-primary edit-profile">See Upcoming Events in Your Area</button>}
-              {isOrganizer === 'false' && <button className="btn btn-primary edit-profile">See Your Gallery</button>}
-              {isOrganizer === 'true' && <div><Link className="btn btn-primary edit-profile" to='/organizerEvents'>See Your Events</Link></div>}
-              {isOrganizer === 'true' && <div><Link className="btn btn-primary edit-profile" to='/createEvent'>Create A New Event</Link></div>}
-              {isOrganizer === 'true' && <div><Link className="btn btn-primary edit-profile" to='/volunteerList'>See Attendees</Link></div>}
+      <section className="section about-section gray-bg" id="about">
+            <div className="container">
+                <div className="row align-items-center flex-row-reverse">
+                    <div className="col-lg-6">
+                        <div className="about-text go-to">
+                            <h3 className="dark-color">{this.state.profile.username}</h3>
+                            <h6 className="theme-color lead">{isOrganizer === 'false' && `Thank you for being an amazing volunteer!`}</h6>
+                            <p>I <mark>created a volunteering platform</mark> for people like you to be matched with amazing volunteering opportunities. Please feel free to explore the site and find what suits your needs.</p>
+                            <div className="row about-list">
+                                <div className="col-md-6">
+                                    <div className="media">
+                                    {isOrganizer === 'false' && <Link to='/eventlog'>See Event Log</Link>}
+                                    {isOrganizer === 'true' &&  <Link to='/organizerEvents'>See Your Events</Link>}
+                                    </div>
+                                    <div className="media">
+                                    {isOrganizer === 'false' && <Link to='/eventReviews'>See Your Feedback</Link>}
+                                    {isOrganizer === 'true' &&  <Link to='/createEvent'>Create A New Event</Link>}
+                                    </div>
+                                    <div className="media">
+                                    {isOrganizer === 'false' && <Link to="/">See Events</Link>}
+                                    {isOrganizer === 'true' &&  <Link to='/volunteerList'>See Attendees</Link>}
+                                    </div>
+                                    <div className="media">
+                                    {isOrganizer === 'false' && <Link to='/gallery'>See your gallery</Link>}
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="media">
+                                        <label>E-mail</label>
+                                        <p>{this.state.profile.email}</p>
+                                    </div>
+                                    <div className="media">
+                                        <label>Phone</label>
+                                        <p>820-885-3321</p>
+                                    </div>
+                                    <div className="media">
+                                        <label>Skype</label>
+                                        <p>skype.0404</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-lg-6">
+                        <div className="about-avatar">
+                            <img src={this.state.profile.profile_picture} title="" alt=""/>
+                        </div>
+                    </div>
+                </div>
+                <div className="counter">
+                    <div className="row">
+                        <div className="col-6 col-lg-3">
+                            <div className="count-data text-center">
+                                <h6 className="count h2" data-to="500" data-speed="500">{isOrganizer === 'true' && events}{isOrganizer === 'false' && eventsAttended}</h6>
+                                <p className="m-0px font-w-600">{isOrganizer === 'true' && 'Events Organized'}{isOrganizer === 'false' && 'Commitments'}</p>
+                            </div>
+                        </div>
+                        <div className="col-6 col-lg-3">
+                            <div className="count-data text-center">
+                                <h6 className="count h2" data-to="150" data-speed="150">{isOrganizer === 'true' && volunteers} {isOrganizer === 'false' && 'WE'}</h6>
+                                <p className="m-0px font-w-600">{isOrganizer === 'true' && 'Volunteers Total'} {isOrganizer === 'false' && 'Do Good'}</p>
+                            </div>
+                        </div>
+                        <div className="col-6 col-lg-3">
+                            <div className="count-data text-center">
+                                <h6 className="count h2" data-to="850" data-speed="850">WE</h6>
+                                <p className="m-0px font-w-600">Help Your Community</p>
+                            </div>
+                        </div>
+                        <div className="col-6 col-lg-3">
+                            <div className="count-data text-center">
+                                <h6 className="count h2" data-to="190" data-speed="190">WE</h6>
+                                <p className="m-0px font-w-600">Find Your Passion</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-    </form>
+        </section>
     )
   }
 }

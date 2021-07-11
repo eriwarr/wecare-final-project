@@ -40,7 +40,7 @@ class VolunteerList extends Component {
             <div className="card">
               <div className="card-body">
                 <p className="card-text">Your Event: {volunteer.name}</p>
-                <p className="card-text">Volunteer: {volunteer.volunteer}</p>
+                <p className="card-text">Volunteer: {volunteer.volunteer} {volunteer.last_name}</p>
                 {!volunteer.confirmed
                   ? <button className="btn btn-primary edit-profile" onClick={()=> {this.confirmAttendance(volunteer.id)}}>Confirm Attendance</button>
                   : <p><strong>Attendance Confirmed by Organization</strong></p>
@@ -50,6 +50,8 @@ class VolunteerList extends Component {
         </div>
     </li>
     ))
+    localStorage.setItem("volunteers", volunteers.length);
+
     return(
 
       <>

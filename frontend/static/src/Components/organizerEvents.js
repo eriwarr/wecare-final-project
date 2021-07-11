@@ -82,7 +82,7 @@ class OrganizerEvents extends Component {
     const eventListings = this.state.events.map((event) =>(
       <EventDetail key={event.id} event={event} updateEvent={this.updateEvent}/>
     ));
-
+    localStorage.setItem("events", eventListings.length);
     return (
       <>
       {eventListings}

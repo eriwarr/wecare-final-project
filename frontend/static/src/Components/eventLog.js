@@ -51,13 +51,16 @@ class EventLog extends Component {
                   ? <p className="card-text">Attendance: <strong>Confirmed</strong></p>
                   : <><p className="card-text">Attendance: Pending confirmation</p><button type="buton" onClick={()=> {this.removeVolunteer(event.id)}}>Remove me from this event</button></>
                 }
-                <CreateReview id={event.id}/>
+                {event.confirmed && <CreateReview id={event.id}/>}
             </div>
           </div>
         </div>
     </li>
-
     ))
+    console.log(eventLogDisplay.event)
+    localStorage.setItem("eventsAttended", eventLogDisplay.length);
+
+    // localStorage.setItem("attendanceConfirmed", eventLogDisplay.length);
     return (
       <>{eventLogDisplay}</>
     )

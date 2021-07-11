@@ -14,6 +14,7 @@ import OrganizerEvents from './organizerEvents';
 import CreateReview from './createReview';
 import EventReviews from './eventReviews';
 import VolunteerList from './volunteerList';
+import Gallery from './gallery';
 
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -74,6 +75,7 @@ class App extends Component {
       this.props.history.push('/');
       localStorage.removeItem("isOrganizer");
       localStorage.removeItem("user");
+      localStorage.removeItem("events");
     }
   }
 
@@ -157,6 +159,9 @@ class App extends Component {
             </Route>
             <Route path='/volunteerList'>
               <VolunteerList/>
+            </Route>
+            <Route path='/gallery'>
+              <Gallery/>
             </Route>
           </Switch>
         </>
