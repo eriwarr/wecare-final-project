@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import {GoogleApiWrapper, Map, Marker, InfoWindow } from 'google-maps-react';
+import { GoogleApiWrapper, Map, Marker, InfoWindow } from 'google-maps-react';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng, } from 'react-places-autocomplete';
 
 export class MapContainer extends Component {
@@ -19,6 +19,15 @@ export class MapContainer extends Component {
   }
 };
 
+componentDidMount() {
+  if (navigator.geolocation) {
+    navigator.geolocation.watchPosition(function(position) {
+      console.log("Latitude is :", position.coords.latitude);
+      console.log("Longitude is :", position.coords.longitude);
+    });
+  }
+}
+
   handleChange = address => {
   this.setState({ address });
   };
@@ -26,7 +35,11 @@ export class MapContainer extends Component {
   handleSelect = address => {
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
-      .then(latLng => console.log('Success', latLng))
+      .then(latLng => {
+        console.log('Success', latLng);
+        this.setState({ address });
+        this.setState({ mapCenter: latLng});
+      })
       .catch(error => console.error('Error', error));
   };
 

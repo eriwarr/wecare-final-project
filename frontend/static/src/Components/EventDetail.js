@@ -2,6 +2,7 @@ import { Component } from 'react';
 import Moment from 'react-moment';
 import Cookies from 'js-cookie';
 import { withRouter } from 'react-router-dom';
+import WeCareLogo from './logo/WeCareLogo.png'; // with require
 
 
 class EventDetail extends Component {
@@ -40,7 +41,7 @@ class EventDetail extends Component {
       <div className="row align-items-center event-block no-gutters margin-40px-bottom">
         <div className="col-lg-5 col-sm-12">
             <div className="position-relative">
-                <img src="https://via.placeholder.com/450x280/FFB6C1/000000" alt=""/>
+                <img src={WeCareLogo} />
                 <div className="events-date">
                     <time><Moment format="MM/DD/YYYY">{event.start}</Moment></time>
                 </div>

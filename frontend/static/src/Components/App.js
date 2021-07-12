@@ -22,6 +22,14 @@ import GoogleMap from './maps';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
+// import {
+//   MDBCarousel,
+//   MDBCarouselInner,
+//   MDBCarouselItem,
+//   MDBCarouselElement,
+//   MDBCarouselCaption,
+// } from 'mdb-react-ui-kit';
+
 
 
 class App extends Component {
@@ -37,9 +45,6 @@ class App extends Component {
   }
 
   async login(user) {
-
-
-
     const options = {
       method: 'POST',
       headers: {
@@ -128,7 +133,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/'>
               <div>I am the homepage</div>
-              <GoogleMap/>
+
             </Route>
             <Route path='/login'>
               <Login login={this.login}/>
