@@ -22,7 +22,7 @@ class EventList extends Component {
   }
 
   deleteEvent(id){
-    
+
     const options = {
     method: 'DELETE',
     headers: {
@@ -67,14 +67,14 @@ class EventList extends Component {
 
   filterEvents(event) {
 
-    fetch(`/api/v1/articles/category/?category=${event.target.name}`)
+    fetch(`/api/v1/events/category/?category=${event.target.name}`)
       .then(response => response.json())
-      .then(data => this.setState({ articles: data }));
+      .then(data => this.setState({ events: data }));
 
   }
 
   showAll(){
-    fetch('api/v1/articles/')
+    fetch('api/v1/events/')
     .then(response => response.json())
     .then(data => this.setState({ events: data }));
 
@@ -87,6 +87,16 @@ class EventList extends Component {
 
     return (
       <>
+      <div className="nav-scroller py-1 mb-2">
+        <nav className="nav d-flex justify-content-between">
+          <button className="btn btn-link text-decoration-none nav-btn" onClick={this.filterEvents} name="Community Development">Community Development</button>
+          <button className="btn btn-link text-decoration-none nav-btn" onClick={this.filterEvents} name="Animals">Animals</button>
+          <button className="btn btn-link text-decoration-none nav-btn" onClick={this.filterEvents} name="Children and Youth">Children & Youth</button>
+          <button className="btn btn-link text-decoration-none nav-btn" onClick={this.filterEvents} name="Enviornment">Enviornment</button>
+          <button className="btn btn-link text-decoration-none nav-btn" onClick={this.filterEvents} name="Health">Health</button>
+          <button className="btn btn-link text-decoration-none nav-btn" onClick={this.showAll} name="Computer Security">ALL</button>
+        </nav>
+      </div>
       {eventListings}
       </>
     )

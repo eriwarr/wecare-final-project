@@ -95,12 +95,20 @@ componentDidMount() {
             lng: this.state.mapCenter.lng
           }}
         >
-          <Marker
-              position={{
-                lat: this.state.mapCenter.lat,
-                lng: this.state.mapCenter.lng
-              }}
-             />
+        <Marker
+            title={'Harvest Hope Food Bank'}
+            position={{
+              lat: 34.80914378437121,
+              lng: -82.43527222504243
+            }}
+           />
+       <Marker
+           title={'P.E.P.G.C'}
+           position={{
+             lat: 34.83848920313609,
+             lng: -82.36320613886481
+           }}
+          />
 
           <InfoWindow
             marker={this.state.activeMarker}
