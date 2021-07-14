@@ -16,13 +16,11 @@ import EventReviews from './eventReviews';
 import VolunteerList from './volunteerList';
 import Gallery from './gallery';
 import OrganizerReviews from './organizerReviews';
-import GoogleMap from './maps';
+import MapView from './mapView';
 
 
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-
-
 
 
 class App extends Component {
@@ -125,8 +123,7 @@ class App extends Component {
          </Navbar>
           <Switch>
             <Route exact path='/'>
-              <div>I am the homepage</div>
-              <GoogleMap/>
+
             </Route>
             <Route path='/login'>
               <Login login={this.login}/>
@@ -166,6 +163,9 @@ class App extends Component {
             </Route>
             <Route path='/organizerReviews'>
               <OrganizerReviews/>
+            </Route>
+            <Route path='/map'>
+              <MapView/>
             </Route>
           </Switch>
         </>

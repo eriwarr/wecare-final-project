@@ -2,90 +2,81 @@ import { Component } from 'react';
 import { GoogleApiWrapper, Map, Marker, InfoWindow } from 'google-maps-react';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng, } from 'react-places-autocomplete';
 
+import Geocode from "react-geocode";
+Geocode.setApiKey(process.env.REACT_APP_API_KEY);
+Geocode.setLanguage("en");
+
+const style = {
+ maxWidth: "700px",
+ height: "100%",
+ overflowX: "hidden",
+ overflowY: "hidden"
+};
+const containerStyle = {
+ maxWidth: "700px",
+ height: "100%"
+};
+
 export class MapContainer extends Component {
   constructor(props) {
   super(props);
   this.state = {
     address: '',
-
+    addresses: [],
     showingInfoWindow: false,
     activeMarker: {},
     selectedPlace: {},
 
     mapCenter: {
-      lat: 34.840573,
-      lng: -82.398286
+      lat: 34.84898779374117,
+      lng: -82.39700009882739
     }
   }
 };
 
 componentDidMount() {
-  if (navigator.geolocation) {
-    navigator.geolocation.watchPosition(function(position) {
-      console.log("Latitude is :", position.coords.latitude);
-      console.log("Longitude is :", position.coords.longitude);
-    });
-  }
+  fetch('api/v1/events/address')
+  .then(response => response.json())
+  .then(data => this.setState({addresses: data}));
 }
+
+onMarkerClick = (props, marker, e) =>
+  this.setState({
+    selectedPlace: props,
+    activeMarker: marker,
+    showingInfoWindow: true
+  });
+
+onMapClicked = (props) => {
+  if (this.state.showingInfoWindow) {
+    this.setState({
+      showingInfoWindow: false,
+      activeMarker: null
+    })
+  }
+};
 
   handleChange = address => {
   this.setState({ address });
   };
 
-  handleSelect = address => {
-    geocodeByAddress(address)
-      .then(results => getLatLng(results[0]))
-      .then(latLng => {
-        console.log('Success', latLng);
-        this.setState({ address });
-        this.setState({ mapCenter: latLng});
-      })
-      .catch(error => console.error('Error', error));
-  };
-
   render() {
+    const markers = this.state.addresses.map((address) => (
+        <Marker onClick={this.onMarkerClick}
+          name = {address.name}
+          address = {address.address}
+          position={{
+            lat: address.position.lat,
+            lng: address.position.lng
+          }}
+        />
+    ))
     return (
       <div id="googleMap">
-        <PlacesAutocomplete
-        value={this.state.address}
-        onChange={this.handleChange}
-        onSelect={this.handleSelect}
-      >
-        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div>
-            <input
-              {...getInputProps({
-                placeholder: 'Search Places ...',
-                className: 'location-search-input',
-              })}
-            />
-            <div className="autocomplete-dropdown-container">
-              {loading && <div>Loading...</div>}
-              {suggestions.map(suggestion => {
-                const className = suggestion.active
-                  ? 'suggestion-item--active'
-                  : 'suggestion-item';
-                // inline style for demonstration purpose
-                const style = suggestion.active
-                  ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                  : { backgroundColor: '#ffffff', cursor: 'pointer' };
-                return (
-                  <div
-                    {...getSuggestionItemProps(suggestion, {
-                      className,
-                      style,
-                    })}
-                  >
-                    <span>{suggestion.description}</span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        )}
-      </PlacesAutocomplete>
         <Map
           google={this.props.google}
+          zoom={14}
+          onClick={this.onMapClicked}
           initialCenter= {{
             lat: this.state.mapCenter.lat,
             lng: this.state.mapCenter.lng
@@ -94,32 +85,20 @@ componentDidMount() {
             lat: this.state.mapCenter.lat,
             lng: this.state.mapCenter.lng
           }}
+          style={style} containerStyle={containerStyle}
         >
-        <Marker
-            title={'Harvest Hope Food Bank'}
-            position={{
-              lat: 34.80914378437121,
-              lng: -82.43527222504243
-            }}
-           />
-       <Marker
-           title={'P.E.P.G.C'}
-           position={{
-             lat: 34.83848920313609,
-             lng: -82.36320613886481
-           }}
-          />
-
-          <InfoWindow
-            marker={this.state.activeMarker}
-            visible={this.state.showingInfoWindow}>
-              <div>
-                <h1>{this.state.selectedPlace.name}</h1>
-              </div>
-          </InfoWindow>
+        {markers}
+        <InfoWindow
+          marker={this.state.activeMarker}
+          visible={this.state.showingInfoWindow}>
+            <div>
+              <h6>{this.state.selectedPlace.name}</h6>
+              <p>{this.state.selectedPlace.address}</p>
+              <button>testing</button>
+            </div>
+        </InfoWindow>
         </Map>
       </div>
-
     )
   }
 }

@@ -34,3 +34,9 @@ class EventSerializer(serializers.ModelSerializer):
         model = Event
         fields = ("__all__")
         depth=1
+
+class EventAddressSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Event
+        fields = ("id", "address","position","name")

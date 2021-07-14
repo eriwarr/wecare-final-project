@@ -1,6 +1,6 @@
 from rest_framework import generics, views
 from .models import Event, Attendance
-from .serializers import EventSerializer, AttendanceCreateSerializer, AttendanceReadSerializer
+from .serializers import EventSerializer, AttendanceCreateSerializer, AttendanceReadSerializer, EventAddressSerializer
 from .permissions import IsAuthOrReadOnly
 from django.shortcuts import render, get_object_or_404
 from rest_framework import status
@@ -8,7 +8,7 @@ from rest_framework.response import Response
 # Create your views here.
 
 class EventListView(generics.ListCreateAPIView):
-    queryset = Event.objects.all()
+    queryset = Event.objects.all().order_by("start")
     serializer_class = EventSerializer
     permissions = (IsAuthOrReadOnly,)
 
@@ -69,6 +69,9 @@ class EventCategoryListView(generics.ListCreateAPIView):
         selection = self.request.query_params['category']
         return Event.objects.filter(category=selection)
 
+class EventLocationListView(generics.ListCreateAPIView):
+    serializer_class = EventAddressSerializer
+    queryset = Event.objects.all()
 
 
 # class OrganizerEventsView(generics.RetrieveUpdateDestroyAPIView):

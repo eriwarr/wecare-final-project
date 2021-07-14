@@ -2,6 +2,8 @@ import { Component } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Cookies from 'js-cookie';
 import { withRouter} from 'react-router-dom';
+import Geocode from "react-geocode";
+Geocode.setApiKey(process.env.REACT_APP_API_KEY);
 
 
 class CreateEvent extends Component {
@@ -16,6 +18,7 @@ class CreateEvent extends Component {
       city: '',
       state: '',
       zipcode: '',
+      position: {},
     }
     this.input = this.input.bind(this);
     this.dateChange = this.dateChange.bind(this);
@@ -30,15 +33,29 @@ class CreateEvent extends Component {
     this.setState({ [event.target.name]: event.target.value })
   }
 
-  newEvent(event) {
+  async newEvent(event) {
     event.preventDefault();
+    const fullAddress = `${this.state.address} ${this.state.city} ${this.state.zipcode}`;
+    await Geocode.fromAddress(fullAddress).then(
+    (response) => {this.setState({position: response.results[0].geometry.location});
+
+  })
+    const newEvent = await {
+      name: this.state.name,
+      category: this.state.category,
+      start: this.state.start,
+      end: this.state.end,
+      address: fullAddress,
+      position: this.state.position
+    }
+
     const options = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'X-CSRFToken': Cookies.get('csrftoken'),
       },
-      body: JSON.stringify(this.state),
+      body: JSON.stringify(newEvent),
     }
     fetch('api/v1/events/', options)
     .then(response => response.json());

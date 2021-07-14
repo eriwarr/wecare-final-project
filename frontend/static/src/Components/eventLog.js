@@ -46,7 +46,7 @@ class EventLog extends Component {
               <div className="card-body">
                 <p><time>Date: <Moment format="MM/DD/YYYY">{event.event.start}</Moment></time></p>
                 <p><time><Moment format="h:mm a">{event.event.start}</Moment></time>-<time><Moment format="h:mm a">{event.event.end}</Moment></time></p>
-                <p className="card-text">{event.event.address} {event.event.city},{event.event.state} {event.event.zip_code}</p>
+                <p className="card-text">{event.event.address}</p>
                 {event.confirmed
                   ? <p className="card-text">Attendance: <strong>Confirmed</strong></p>
                   : <><p className="card-text">Attendance: Pending confirmation</p><button type="buton" onClick={()=> {this.removeVolunteer(event.id)}}>Remove me from this event</button></>

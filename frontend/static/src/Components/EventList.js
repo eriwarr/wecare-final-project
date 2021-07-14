@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import Cookies from 'js-cookie';
 import EventDetail from './EventDetail';
+import GoogleMap from './maps';
+import { Link } from 'react-router-dom';
 
 class EventList extends Component {
   constructor(props) {
@@ -86,19 +88,20 @@ class EventList extends Component {
     ));
 
     return (
-      <>
+      <div className="container">
       <div className="nav-scroller py-1 mb-2">
         <nav className="nav d-flex justify-content-between">
-          <button className="btn btn-link text-decoration-none nav-btn" onClick={this.filterEvents} name="Community Development">Community Development</button>
-          <button className="btn btn-link text-decoration-none nav-btn" onClick={this.filterEvents} name="Animals">Animals</button>
-          <button className="btn btn-link text-decoration-none nav-btn" onClick={this.filterEvents} name="Children and Youth">Children & Youth</button>
-          <button className="btn btn-link text-decoration-none nav-btn" onClick={this.filterEvents} name="Enviornment">Enviornment</button>
-          <button className="btn btn-link text-decoration-none nav-btn" onClick={this.filterEvents} name="Health">Health</button>
-          <button className="btn btn-link text-decoration-none nav-btn" onClick={this.showAll} name="Computer Security">ALL</button>
+          <button type="button" className="btn btn-link text-decoration-none nav-btn" onClick={this.filterEvents} name="Community Development">Community Development</button>
+          <button type="button" className="btn btn-link text-decoration-none nav-btn" onClick={this.filterEvents} name="Animals">Animals</button>
+          <button type="button" className="btn btn-link text-decoration-none nav-btn" onClick={this.filterEvents} name="Children and Youth">Children & Youth</button>
+          <button type="button" className="btn btn-link text-decoration-none nav-btn" onClick={this.filterEvents} name="Enviornment">Enviornment</button>
+          <button type="button" className="btn btn-link text-decoration-none nav-btn" onClick={this.filterEvents} name="Health">Health</button>
+          <button type="button" className="btn btn-link text-decoration-none nav-btn" onClick={this.showAll} name="Computer Security">ALL</button>
+          <Link type="button" className="btn btn-link text-decoration-none nav-btn" to='/map'>View Maps</Link>
         </nav>
       </div>
       {eventListings}
-      </>
+    </div>
     )
   }
 }
