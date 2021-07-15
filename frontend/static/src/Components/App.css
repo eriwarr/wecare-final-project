@@ -391,6 +391,7 @@ mark {
   height: 500px;
 }
 
-li {
+.list {
   list-style-type:none;
+  
 }

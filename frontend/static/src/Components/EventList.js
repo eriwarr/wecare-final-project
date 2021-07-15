@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import Cookies from 'js-cookie';
 import EventDetail from './EventDetail';
-import GoogleMap from './maps';
 import { Link } from 'react-router-dom';
 
 class EventList extends Component {

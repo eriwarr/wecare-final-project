@@ -42,7 +42,7 @@ class EventDetail extends Component {
       <div className="row align-items-center event-block no-gutters margin-40px-bottom">
         <div className="col-lg-5 col-sm-12">
             <div className="position-relative">
-                <img src={WeCareLogo} />
+                <img src={WeCareLogo} alt="logo"/>
                 <div className="events-date">
                     <time><Moment format="MM/DD/YYYY">{event.start}</Moment></time>
                 </div>
