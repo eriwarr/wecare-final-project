@@ -93,7 +93,7 @@ class EventList extends Component {
           <button type="button" className="btn btn-link text-decoration-none nav-btn" onClick={this.filterEvents} name="Community Development">Community Development</button>
           <button type="button" className="btn btn-link text-decoration-none nav-btn" onClick={this.filterEvents} name="Animals">Animals</button>
           <button type="button" className="btn btn-link text-decoration-none nav-btn" onClick={this.filterEvents} name="Children and Youth">Children & Youth</button>
-          <button type="button" className="btn btn-link text-decoration-none nav-btn" onClick={this.filterEvents} name="Enviornment">Enviornment</button>
+          <button type="button" className="btn btn-link text-decoration-none nav-btn" onClick={this.filterEvents} name="Enviornment">Environment</button>
           <button type="button" className="btn btn-link text-decoration-none nav-btn" onClick={this.filterEvents} name="Health">Health</button>
           <button type="button" className="btn btn-link text-decoration-none nav-btn" onClick={this.showAll} name="Computer Security">ALL</button>
           <Link type="button" className="btn btn-link text-decoration-none nav-btn" to='/map'>View Maps</Link>

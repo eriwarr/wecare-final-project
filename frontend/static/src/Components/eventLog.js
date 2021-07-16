@@ -2,6 +2,7 @@ import { Component } from 'react';
 import CreateReview from './createReview';
 import Moment from 'react-moment';
 import Cookies from 'js-cookie';
+import Accordion from 'react-bootstrap/Accordion';
 
 class EventLog extends Component {
   constructor(props) {
@@ -39,23 +40,19 @@ class EventLog extends Component {
 
   render() {
     const eventLogDisplay = this.state.eventLog.map((event) => (
-      <li key={event.id}>
-        <div className="container">
-          <h4>{event.event.name} hosted by {event.event.organizer.username}</h4>
-            <div className="card">
-              <div className="card-body">
-                <p><time>Date: <Moment format="MM/DD/YYYY">{event.event.start}</Moment></time></p>
-                <p><time><Moment format="h:mm a">{event.event.start}</Moment></time>-<time><Moment format="h:mm a">{event.event.end}</Moment></time></p>
-                <p className="card-text">{event.event.address}</p>
-                {event.confirmed
-                  ? <p className="card-text">Attendance: <strong>Confirmed</strong></p>
-                  : <><p className="card-text">Attendance: Pending confirmation</p><button type="buton" onClick={()=> {this.removeVolunteer(event.id)}}>Remove me from this event</button></>
-                }
-                {event.confirmed && <CreateReview id={event.event.id} organizerId={event.organizer.id}/>}
-            </div>
-          </div>
-        </div>
-    </li>
+      <Accordion.Item eventKey={event.id}>
+        <Accordion.Header>{event.event.name} hosted by {event.event.organizer.username}</Accordion.Header>
+        <Accordion.Body>
+          <time>Date: <Moment format="MM/DD/YYYY">{event.event.start}</Moment> | </time>
+          <time>Time: <Moment format="h:mm a">{event.event.start}</Moment></time> - <time><Moment format="h:mm a">{event.event.end}</Moment></time>
+          <p>Address: {event.event.address}</p>
+            {event.confirmed
+              ? <p>Attendance: <strong>Confirmed</strong></p>
+              : <><p className="card-text">Attendance: Pending confirmation</p><button type="buton" onClick={()=> {this.removeVolunteer(event.id)}}>Remove me from this event</button></>
+            }
+            {event.confirmed && <CreateReview id={event.event.id} organizerId={event.organizer.id}/>}
+        </Accordion.Body>
+      </Accordion.Item>
 
     ))
 
@@ -63,7 +60,7 @@ class EventLog extends Component {
 
     // localStorage.setItem("attendanceConfirmed", eventLogDisplay.length);
     return (
-      <>{eventLogDisplay}</>
+      <Accordion>{eventLogDisplay}</Accordion>
     )
   }
 }

@@ -7,6 +7,10 @@
   pointer-events: none;
 }
 
+.we-care {
+  font-size: 40px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -393,5 +397,5 @@ mark {
 
 .list {
   list-style-type:none;
-  
+
 }

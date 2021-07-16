@@ -17,6 +17,7 @@ import VolunteerList from './volunteerList';
 import Gallery from './gallery';
 import OrganizerReviews from './organizerReviews';
 import MapView from './mapView';
+import ContactUs from './contactUs';
 
 
 import Navbar from 'react-bootstrap/Navbar';
@@ -107,11 +108,10 @@ class App extends Component {
     return (
         <>
           <Navbar className='nav-header' bg="light" variant="dark">
-            <Navbar.Brand><Link to='/'>WeCare</Link></Navbar.Brand>
+            <Navbar.Brand className="we-care"><Link to='/'>WeCare</Link></Navbar.Brand>
             <Nav className="mr-auto">
-              <Link className="btn text-decoration-none" to='/'>About</Link>
-              <Link className="btn text-decoration-none" to='/events'>Events</Link>
-              <Link className="btn text-decoration-none" to='/'>Contact Us</Link>
+              <Link className="btn text-decoration-none" to='/events'>Find Opportunities</Link>
+              <Link className="btn text-decoration-none" to='/contactUs'>Contact Us</Link>
               {!!Cookies.get('Authorization') && <Link className="btn text-decoration-none" to='/profile'>View Profile</Link>}
             </Nav>
               {!!Cookies.get('Authorization')
@@ -123,7 +123,14 @@ class App extends Component {
          </Navbar>
           <Switch>
             <Route exact path='/'>
-
+              <div className="container">
+              <div className="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+                <div className="col-md-6 px-0">
+                <h1 className="display-4 font-italic"></h1>
+                <p className="lead my-3"></p>
+                </div>
+              </div>
+              </div>
             </Route>
             <Route path='/login'>
               <Login login={this.login}/>
@@ -166,6 +173,9 @@ class App extends Component {
             </Route>
             <Route path='/map'>
               <MapView/>
+            </Route>
+            <Route path='/contactUs'>
+              <ContactUs/>
             </Route>
           </Switch>
         </>

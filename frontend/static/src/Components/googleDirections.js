@@ -10,8 +10,8 @@ class GoogleDirections extends Component {
     this.handleModal = this.handleModal.bind(this);
   }
 
-  handleModal(testing){
-    console.log(testing)
+  handleModal(address){
+    console.log(address)
   }
 
   render(){
