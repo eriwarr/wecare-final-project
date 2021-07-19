@@ -123,14 +123,7 @@ class App extends Component {
          </Navbar>
           <Switch>
             <Route exact path='/'>
-              <div className="container">
-              <div className="jumbotron p-3 p-md-5 text-white rounded bg-dark">
-                <div className="col-md-6 px-0">
-                <h1 className="display-4 font-italic"></h1>
-                <p className="lead my-3"></p>
-                </div>
-              </div>
-              </div>
+
             </Route>
             <Route path='/login'>
               <Login login={this.login}/>

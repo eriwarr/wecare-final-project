@@ -399,3 +399,27 @@ mark {
   list-style-type:none;
 
 }
+
+
+
+
+
+h1,h2,h3 {
+	margin:0 0 35px 0;
+	letter-spacing:1px;
+}
+
+p{
+	margin:0 0 25px;
+	font-size:18px;
+	line-height:1.6em;
+}
+
+
+#contact{
+	padding-bottom:80px;
+}
+
+textarea.form-control{
+    height:100px;
+}

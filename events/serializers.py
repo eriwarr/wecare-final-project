@@ -9,10 +9,13 @@ class AttendanceCreateSerializer(serializers.ModelSerializer):
     volunteer = serializers.ReadOnlyField(source='attendee.username')
     last_name = serializers.ReadOnlyField(source='attendee.last_name')
     name = serializers.ReadOnlyField(source='event.name')
+    date = serializers.ReadOnlyField(source='event.start')
+    location = serializers.ReadOnlyField(source='event.address')
 
     class Meta:
         model = Attendance
         fields = '__all__'
+
 
 
 class AttendanceReadSerializer(serializers.ModelSerializer):
