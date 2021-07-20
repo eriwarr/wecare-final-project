@@ -2,6 +2,7 @@ import './App.css';
 import Cookies from 'js-cookie';
 import { Route, Switch, withRouter, Link} from 'react-router-dom';
 import { Component } from 'react';
+import we_care from './logo/we_care.png';
 
 import Login from './Login';
 import Registration from './Registration';
@@ -18,7 +19,9 @@ import Gallery from './gallery';
 import OrganizerReviews from './organizerReviews';
 import MapView from './mapView';
 import ContactUs from './contactUs';
-
+import Carousel from 'react-bootstrap/Carousel';
+import Image from 'react-bootstrap/Image';
+import {Container, Row, Col }from 'react-bootstrap';
 
 
 import Navbar from 'react-bootstrap/Navbar';
@@ -142,9 +145,43 @@ class App extends Component {
       </nav>
           <Switch>
             <Route exact path='/'>
-              <div className="container home">
-                hi
+              <div className="home">
+                testing
               </div>
+              <Container>
+                <Row>
+                  <Col>
+                  <figure>
+                    <blockquote className="blockquote">
+                      <p class="mb-0">If you can’t fly then run, if you can’t run then walk, if you can’t walk then crawl, but whatever you do you have to keep moving forward.</p>
+                    </blockquote>
+                    <figcaption className="blockquote-footer">
+                      Martin Luther King Jr.
+                    </figcaption>
+                  </figure>
+                </Col>
+                <Col>
+                  <figure class="text-center">
+                    <blockquote className="blockquote">
+                      <p class="mb-0">Not everything that is faced can be changed, but nothing can be changed until it is faced.</p>
+                    </blockquote>
+                    <figcaption className="blockquote-footer">
+                      James Baldwin
+                    </figcaption>
+                  </figure>
+                </Col>
+                <Col>
+                  <figure class="text-end">
+                    <blockquote className="blockquote">
+                      <p class="mb-0">History, despite its wrenching pain, cannot be unlived, but if faced with courage, need not be lived again.</p>
+                    </blockquote>
+                    <figcaption className="blockquote-footer">
+                      Maya Angelou
+                    </figcaption>
+                  </figure>
+                </Col>
+              </Row>
+            </Container>
             </Route>
             <Route path='/login'>
               <Login login={this.login}/>
