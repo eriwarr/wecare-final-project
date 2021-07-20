@@ -1,8 +1,9 @@
 import GoogleMap from './maps';
 import { Component } from 'react';
 import Geocode from "react-geocode";
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Modal, Container, Row, Col } from 'react-bootstrap';
 import { GoogleApiWrapper, Map, Marker, InfoWindow } from 'google-maps-react';
+import Directions from './directions';
 
 Geocode.setApiKey(process.env.REACT_APP_API_KEY);
 Geocode.setLanguage("en");
@@ -46,33 +47,39 @@ class MapView extends Component {
 
   render() {
     const eventListings = this.state.events.map((event) =>(
-      <li key={event.id} className="list">
-        <div className="media text-muted pt-3">
-          <strong className="d-block text-gray-dark">{event.name} by {event.owner}</strong>
-          <p>{event.address}</p>
-          <button type="button" className="btn" onClick={()=> this.handleAddress(event.position)}>See on Map</button>
-        </div>
-      </li>
+      <table className="table table-hover" key={event.id}>
+        <tbody>
+          <tr class="table-secondary">
+           <td><p><strong className="d-block text-gray-dark">{event.name}</strong></p></td>
+           <td><p>{event.address}</p></td>
+           <td><button type="button" className="btn" onClick={()=> this.handleAddress(event.position)}>See on Map</button></td>
+          </tr>
+        </tbody>
+      </table>
     ));
 
 
     return (
       <>
-      <main role="main" className="container">
+      <main role="main" className="container main">
         <div className="row">
-          <Modal show={this.state.show}>
+          <Modal show={this.state.show} size="lg" aria-labelledby="contained-modal-title-vcenter"
+            centered>
             <Modal.Header>
               <h6><strong>Directions to {this.state.directions}</strong></h6>
             </Modal.Header>
-            <Modal.Body>
-              <div>
-              </div>
+            <Modal.Body className="show-grid">
+              <Container>
+                <Row>
+                  <Directions address={this.state.address}/>
+                </Row>
+              </Container>
             </Modal.Body>
             <Modal.Footer>
               <button type="button" className="btn"onClick={() => this.handleModal()}>Close</button>
             </Modal.Footer>
           </Modal>
-          <div className="col-md-6 blog-main">
+          <div className="col-md-6">
             {eventListings}
           </div>
           <aside className="col-md-6 blog-sidebar">

@@ -2,6 +2,7 @@ import { Component } from 'react';
 import Cookies from 'js-cookie';
 import EventDetail from './EventDetail';
 import { Link } from 'react-router-dom';
+import {Container, Row }from 'react-bootstrap';
 
 class EventList extends Component {
   constructor(props) {
@@ -90,16 +91,20 @@ class EventList extends Component {
       <div className="container">
       <div className="nav-scroller py-1 mb-2">
         <nav className="nav d-flex justify-content-between">
-          <button type="button" className="btn btn-link text-decoration-none nav-btn" onClick={this.filterEvents} name="Community Development">Community Development</button>
-          <button type="button" className="btn btn-link text-decoration-none nav-btn" onClick={this.filterEvents} name="Animals">Animals</button>
-          <button type="button" className="btn btn-link text-decoration-none nav-btn" onClick={this.filterEvents} name="Children and Youth">Children & Youth</button>
-          <button type="button" className="btn btn-link text-decoration-none nav-btn" onClick={this.filterEvents} name="Enviornment">Environment</button>
-          <button type="button" className="btn btn-link text-decoration-none nav-btn" onClick={this.filterEvents} name="Health">Health</button>
-          <button type="button" className="btn btn-link text-decoration-none nav-btn" onClick={this.showAll} name="Computer Security">ALL</button>
-          <Link type="button" className="btn btn-link text-decoration-none nav-btn" to='/map'>View Maps</Link>
+          <button type="button" className="btn" onClick={this.filterEvents} name="Community Development"><strong>Community Development</strong></button>
+          <button type="button" className="btn" onClick={this.filterEvents} name="Animals"><strong>Animals</strong></button>
+          <button type="button" className="btn" onClick={this.filterEvents} name="Children and Youth"><strong>Children & Youth</strong></button>
+          <button type="button" className="btn" onClick={this.filterEvents} name="Enviornment"><strong>Environment</strong></button>
+          <button type="button" className="btn" onClick={this.filterEvents} name="Health"><strong>Health</strong></button>
+          <button type="button" className="btn" onClick={this.showAll} name="Computer Security"><strong>ALL</strong></button>
+          <Link type="button" className="btn" to='/map'>View Maps</Link>
         </nav>
       </div>
-      {eventListings}
+      <Container>
+        <Row>
+          {eventListings}
+        </Row>
+      </Container>
     </div>
     )
   }

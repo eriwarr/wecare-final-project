@@ -8,3 +8,4 @@ class Review(models.Model):
     feedback = models.TextField()
     event = models.ForeignKey(Event, on_delete=models.CASCADE, null=True)
     organizer = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="review", on_delete=models.CASCADE, null=True)
+    date_created = models.DateTimeField(auto_now=True, null=True)

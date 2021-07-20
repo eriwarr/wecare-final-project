@@ -3,6 +3,7 @@ import Moment from 'react-moment';
 import Cookies from 'js-cookie';
 import { withRouter } from 'react-router-dom';
 import WeCareLogo from './logo/WeCareLogo.png'; // with require
+import { Col } from 'react-bootstrap';
 
 
 class EventDetail extends Component {
@@ -35,31 +36,30 @@ class EventDetail extends Component {
   render() {
     const event = this.props.event
     let isOrganizer = localStorage.getItem("isOrganizer")
-
+    console.log(event)
     return (
-      <>
-      <div className="container">
-      <div className="row align-items-center event-block no-gutters margin-40px-bottom">
-        <div className="col-lg-5 col-sm-12">
-            <div className="position-relative">
-                <img src={WeCareLogo} alt="logo"/>
-                <div className="events-date">
-                    <time><Moment format="MM/DD/YYYY">{event.start}</Moment></time>
-                </div>
-            </div>
+
+      <Col xs={12} md={6} className="event-col">
+      <div class="card mb-5">
+        <h3 class="card-header">{event.name}</h3>
+        <div class="card-body">
+          <p class="card-text">{event.address}</p>
         </div>
-        <div className="col-lg-7 col-sm-12">
-            <div className="padding-60px-lr md-padding-50px-lr sm-padding-30px-all xs-padding-25px-all">
-                <h5 className="margin-15px-bottom md-margin-10px-bottom font-size22 md-font-size20 xs-font-size18 font-weight-500"><a href="event-details.html" className="text-theme-color">{event.owner}</a></h5>
-                <p><time><Moment format="h:mm a">{event.start}</Moment></time>-<time><Moment format="h:mm a">{event.end}</Moment></time> <span>({event.name})</span></p>
-                <p>{event.address}</p>
-                {event.has_owner_permissions && <p>You have {event.attendance.length} volunteer(s) attending this event</p>}
-                {isOrganizer === 'false' && <button className="butn small margin-10px-top md-no-margin-top" type='button' onClick={()=> this.signUp(event)}>Sign Up for event</button>} {event.has_owner_permissions && <button type='button' onClick={() => this.props.deleteEvent(event.id)}>Remove Event</button>}
-            </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><time><Moment format="MM/DD/YYYY">{event.start}</Moment></time></li>
+          <li class="list-group-item"><time><Moment format="h:mm a">{event.start}</Moment></time> - <time><Moment format="h:mm a">{event.end}</Moment></time></li>
+          {event.has_owner_permissions && <li class="list-group-item">You have {event.attendance.length} volunteer(s) attending this event</li>}
+        </ul>
+        <div class="card-body">
+          {isOrganizer === 'false' && <button className="btn btn-dark btn-sm" type='button' onClick={()=> this.signUp(event)}>Sign Up for event</button>}
+          {event.has_owner_permissions && <button className="btn btn-dark btn-sm" type='button' onClick={() => this.props.deleteEvent(event.id)}>Delete Event</button>}
         </div>
-    </div>
-  </div>
-      </>
+        <div class="card-footer text-muted">
+          2 days ago
+        </div>
+      </div>
+      </Col>
+
     )
   }
 

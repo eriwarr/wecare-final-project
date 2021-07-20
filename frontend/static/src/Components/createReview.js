@@ -44,6 +44,7 @@ class CreateReview extends Component {
   }
 
   render() {
+    
     return(
       <>
       <form onSubmit={this.submitFeedback}>
@@ -52,7 +53,7 @@ class CreateReview extends Component {
         {this.state.isEditing === true && <button type="submit" className="btn btn-sm btn-block">Submit Feedback</button>}
         {this.state.isEditing === true && <button type="button" className="btn btn-sm btn-block" onClick={() => this.handleReset()}>Cancel</button>}
       </div>
-      {this.state.isEditing === false && <button type='button' onClick={()=> this.setState({ isEditing: true })}>Give feedback to this org</button>}
+      {this.state.isEditing === false && <button type='button' className="btn btn-dark" onClick={()=> this.setState({ isEditing: true })}>Give feedback to this org</button>}
       </form>
       </>
     )

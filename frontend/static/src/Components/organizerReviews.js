@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import Accordion from 'react-bootstrap/Accordion';
 
 class OrganizerReviews extends Component {
   constructor(props){
@@ -18,14 +19,20 @@ class OrganizerReviews extends Component {
   render(){
     const reviews = this.state.reviews.map((review => (
       <li key={review.id}>
-      <p>{review.event_name}</p>
-      <p>{review.feedback}</p>
-      <p>by {review.author_name}</p>
+      <Accordion.Item eventKey={review.id}>
+        <Accordion.Header>
+          {review.event_name}
+        </Accordion.Header>
+        <Accordion.Body>
+          <p>{review.feedback}</p>
+          <p>by {review.author_name}</p>
+        </Accordion.Body>
+        </Accordion.Item>
       </li>
 
     )))
     return(
-      <ul>{reviews}</ul>
+      <Accordion>{reviews}</Accordion>
     )
   }
 }

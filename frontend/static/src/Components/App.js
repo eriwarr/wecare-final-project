@@ -20,6 +20,7 @@ import MapView from './mapView';
 import ContactUs from './contactUs';
 
 
+
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
@@ -28,7 +29,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      selection: 'home',
+      showAlert: true,
     }
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
@@ -54,6 +55,7 @@ class App extends Component {
       localStorage.setItem("isOrganizer", data.user.is_organizer);
       localStorage.setItem("user", data.user.username);
       this.props.history.push('/profile');
+      alert(`Welcome Back ${data.user.username}`)
     } else {
       //throw error
     }
@@ -107,23 +109,42 @@ class App extends Component {
     let user = localStorage.getItem("user")
     return (
         <>
-          <Navbar className='nav-header' bg="light" variant="dark">
-            <Navbar.Brand className="we-care"><Link to='/'>WeCare</Link></Navbar.Brand>
-            <Nav className="mr-auto">
-              <Link className="btn text-decoration-none" to='/events'>Find Opportunities</Link>
-              <Link className="btn text-decoration-none" to='/contactUs'>Contact Us</Link>
-              {!!Cookies.get('Authorization') && <Link className="btn text-decoration-none" to='/profile'>View Profile</Link>}
-            </Nav>
-              {!!Cookies.get('Authorization')
-              ? <button type="button" className="btn text-decoration-none" onClick={this.logout}>Logout</button>
-              : <Link className="btn text-decoration-none" to='/login'>Login</Link>
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div className="container-fluid">
+            <Link className="navbar-brand" to='/'>WeCare</Link>
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+            </button>
 
+          <div className="collapse navbar-collapse" id="navbarColor02">
+            <ul className="navbar-nav me-auto">
+              <li className="nav-item">
+                <a className="nav-link active" href="#">Home
+                  <span className="visually-hidden">(current)</span>
+                </a>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to='/events'>Find Opportunities</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to='/contactUs'>Contact Us</Link>
+              </li>
+            </ul>
+            <div className="d-flex">
+              {!!Cookies.get('Authorization') && <Link className="nav-link" to='/profile'>View Profile</Link>}
+              {!!Cookies.get('Authorization')
+              ? <button type="button" className="btn btn-secondary my-2 my-sm-0" onClick={this.logout}>Logout</button>
+              : <Link className="btn btn-secondary my-2 my-sm-0" to='/login'>Login</Link>
               }
-              {user && `Welcome back ${user}!`}
-         </Navbar>
+            </div>
+        </div>
+        </div>
+      </nav>
           <Switch>
             <Route exact path='/'>
-
+              <div className="container home">
+                hi
+              </div>
             </Route>
             <Route path='/login'>
               <Login login={this.login}/>

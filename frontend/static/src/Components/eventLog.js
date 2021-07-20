@@ -39,18 +39,41 @@ class EventLog extends Component {
   }
 
   render() {
+    let user = localStorage.getItem("user")
     const eventLogDisplay = this.state.eventLog.map((event) => (
-      <Accordion.Item eventKey={event.id}>
-        <Accordion.Header>{event.event.name} hosted by {event.event.organizer.username}</Accordion.Header>
+      <Accordion.Item eventKey={event.id} key={event.id}>
+        <Accordion.Header>
+          <h4>{event.event.name} hosted by {event.event.organizer.username}</h4>
+          </Accordion.Header>
         <Accordion.Body>
-          <time>Date: <Moment format="MM/DD/YYYY">{event.event.start}</Moment> | </time>
-          <time>Time: <Moment format="h:mm a">{event.event.start}</Moment></time> - <time><Moment format="h:mm a">{event.event.end}</Moment></time>
-          <p>Address: {event.event.address}</p>
+          <table className="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Time</th>
+                <th scope="col">Address</th>
+                <th scope="col">Attendance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="table-secondary">
+                <th scope="row"><p><Moment format="MM/DD/YYYY">{event.event.start}</Moment></p></th>
+                <td><p><Moment format="h:mm a">{event.event.start}</Moment> - <Moment format="h:mm a">{event.event.end}</Moment></p></td>
+                <td><p>{event.event.address}</p></td>
+                <td>
+                  {event.confirmed
+                    ? <p><strong>Confirmed</strong></p>
+                    : <p>Pending</p>
+                  }
+                </td>
+              </tr>
+            </tbody>
+          </table>
             {event.confirmed
-              ? <p>Attendance: <strong>Confirmed</strong></p>
-              : <><p className="card-text">Attendance: Pending confirmation</p><button type="buton" onClick={()=> {this.removeVolunteer(event.id)}}>Remove me from this event</button></>
+              ? <CreateReview id={event.event.id} organizerId={event.organizer.id}/>
+              : <button type="buton" className="btn btn-dark" onClick={()=> {this.removeVolunteer(event.id)}}>Remove me from this event</button>
             }
-            {event.confirmed && <CreateReview id={event.event.id} organizerId={event.organizer.id}/>}
+
         </Accordion.Body>
       </Accordion.Item>
 
@@ -60,7 +83,10 @@ class EventLog extends Component {
 
     // localStorage.setItem("attendanceConfirmed", eventLogDisplay.length);
     return (
+      <>
+      <h1>{user}'s Volunteer Events</h1>
       <Accordion>{eventLogDisplay}</Accordion>
+      </>
     )
   }
 }

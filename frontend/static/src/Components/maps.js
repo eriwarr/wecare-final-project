@@ -9,6 +9,7 @@ Geocode.setApiKey(process.env.REACT_APP_API_KEY);
 Geocode.setLanguage("en");
 
 
+
 const style = {
  maxWidth: "700px",
  height: "100%",
@@ -71,7 +72,7 @@ onMapClicked = (props) => {
   render() {
     const markers = this.state.addresses.map((address) => (
         <Marker  key={address.id} onClick={this.onMarkerClick}
-          icon = "https://img.icons8.com/material/50/fa314a/charity.png" 
+          icon = "https://img.icons8.com/material/50/fa314a/charity.png"
           name = {address.name}
           address = {address.address}
           position={{
@@ -81,6 +82,7 @@ onMapClicked = (props) => {
         />
     ));
     return (
+      <>
       <div id="googleMap">
         <Map
           google={this.props.google}
@@ -107,6 +109,10 @@ onMapClicked = (props) => {
           </InfoWindow>
         </Map>
       </div>
+      <div>
+
+      </div>
+      </>
     )
   }
 }
