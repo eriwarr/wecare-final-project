@@ -23,7 +23,7 @@ class EventReviews extends Component {
     let user = localStorage.getItem("user")
     console.log(this.state.reviews)
     const reviews = this.state.reviews.map((review )=> (
-        <Accordion.Item eventKey={review.id} key={review.id}>
+        <Accordion.Item eventKey={review.id} key={review.id} className="accordion">
           <Accordion.Header><h4>{review.event_name} | {review.organizer}</h4></Accordion.Header>
           <Accordion.Body>
             <p>{review.feedback}</p>

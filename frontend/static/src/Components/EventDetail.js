@@ -39,8 +39,8 @@ class EventDetail extends Component {
     console.log(event)
     return (
 
-      <Col xs={12} md={6} className="event-col">
-      <div className="card mb-5">
+      <Col xs={12} md={4} className="event-col">
+      <div className="card mb-5 event-card">
         <h3 className="card-header">{event.name}</h3>Category: {event.category}
         <img className="logo"src={we_care} alt=""/>
         <div className="card-body">

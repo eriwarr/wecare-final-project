@@ -72,7 +72,7 @@ onMapClicked = (props) => {
   render() {
     const markers = this.state.addresses.map((address) => (
         <Marker  key={address.id} onClick={this.onMarkerClick}
-          icon = "https://img.icons8.com/material/50/fa314a/charity.png"
+          icon = "https://img.icons8.com/ios-filled/50/000000/charity.png"
           name = {address.name}
           address = {address.address}
           position={{
@@ -86,7 +86,7 @@ onMapClicked = (props) => {
       <div id="googleMap">
         <Map
           google={this.props.google}
-          zoom={16}
+          zoom={13}
           onClick={this.onMapClicked}
           initialCenter= {{
             lat: this.state.mapCenter.lat,

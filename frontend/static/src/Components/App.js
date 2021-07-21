@@ -138,7 +138,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/'>
               <div className="home">
-                <p>Hi, my name is Eric. </p>
+                <p className="home-p">Hi, my name is Eric, and welcome to WeCare.com. My goal is to help enrich the lives of people who live in our communities. The pandemic has changed how we see and view the world. It is now more important than ever to begin seeing people as human beings and creating an atmosphere that nourishes everyone.</p>
               </div>
               <Container>
                 <Row>

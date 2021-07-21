@@ -41,7 +41,7 @@ class EventLog extends Component {
   render() {
     let user = localStorage.getItem("user")
     const eventLogDisplay = this.state.eventLog.map((event) => (
-      <Accordion.Item eventKey={event.id} key={event.id}>
+      <Accordion.Item eventKey={event.id} key={event.id} className="accordion">
         <Accordion.Header>
           <h4>{event.event.name} hosted by {event.event.organizer.username}</h4>
           </Accordion.Header>
@@ -56,7 +56,7 @@ class EventLog extends Component {
               </tr>
             </thead>
             <tbody>
-              <tr className="table-secondary">
+              <tr className="table-dark">
                 <th scope="row"><p><Moment format="MM/DD/YYYY">{event.event.start}</Moment></p></th>
                 <td><p><Moment format="h:mm a">{event.event.start}</Moment> - <Moment format="h:mm a">{event.event.end}</Moment></p></td>
                 <td><p>{event.event.address}</p></td>
