@@ -67,9 +67,10 @@ class EventList extends Component {
     });
   }
 
-  filterEvents(event) {
+  filterEvents(category) {
+    console.log(category)
 
-    fetch(`/api/v1/events/category/?category=${event.target.name}`)
+    fetch(`/api/v1/events/category/?category=${category}`)
       .then(response => response.json())
       .then(data => this.setState({ events: data }));
 
@@ -91,13 +92,13 @@ class EventList extends Component {
       <div className="container">
       <div className="nav-scroller py-1 mb-2">
         <nav className="nav d-flex justify-content-between">
-          <button type="button" className="btn" onClick={this.filterEvents} name="Community Development"><strong>Community Development</strong></button>
-          <button type="button" className="btn" onClick={this.filterEvents} name="Animals"><strong>Animals</strong></button>
-          <button type="button" className="btn" onClick={this.filterEvents} name="Children and Youth"><strong>Children & Youth</strong></button>
-          <button type="button" className="btn" onClick={this.filterEvents} name="Enviornment"><strong>Environment</strong></button>
-          <button type="button" className="btn" onClick={this.filterEvents} name="Health"><strong>Health</strong></button>
-          <button type="button" className="btn" onClick={this.showAll} name="Computer Security"><strong>ALL</strong></button>
-          <Link type="button" className="btn" to='/map'>View Maps</Link>
+          <button type="button" className="btn" onClick={() => this.filterEvents("Community Development")}><strong>Community Development</strong></button>
+          <button type="button" className="btn" onClick={() => this.filterEvents("Animals")}><strong>Animals</strong></button>
+          <button type="button" className="btn" onClick={() => this.filterEvents("Children and Youth")}><strong>Children & Youth</strong></button>
+          <button type="button" className="btn" onClick={() => this.filterEvents("Environment")}><strong>Environment</strong></button>
+          <button type="button" className="btn" onClick={() => this.filterEvents("Health")}><strong>Health</strong></button>
+          <button type="button" className="btn" onClick={this.showAll}><strong>ALL</strong></button>
+          <Link type="button" className="btn" to='/map'><strong>View Maps</strong></Link>
         </nav>
       </div>
       <Container>

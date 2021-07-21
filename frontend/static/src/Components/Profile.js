@@ -79,9 +79,9 @@ class Profile extends Component {
     return(
       <>
       {this.state.showAlert && alert}
-      <form onSubmit={this.editProfile}>
-      <section className="section about-section gray-bg" id="about">
-            <div className="container">
+      <form onSubmit={this.editProfile} className="form-profile">
+      <section className="section about-section" id="about">
+            <div className="container div-profile">
                 <div className="row align-items-center flex-row-reverse">
                     <div className="col-lg-6">
                         <div className="about-text go-to">
@@ -146,14 +146,14 @@ class Profile extends Component {
                     <div className="row">
                         <div className="col-6 col-lg-3">
                             <div className="count-data text-center">
-                                <h6 className="count h2" data-to="500" data-speed="500">{isOrganizer === 'true' && events}{isOrganizer === 'false' && eventsAttended}</h6>
-                                <p className="m-0px font-w-600">{isOrganizer === 'true' && 'Events Organized'}{isOrganizer === 'false' && 'Commitments'}</p>
+                                <h6 className="count h2" data-to="500" data-speed="500">WE</h6>
+                                <p className="m-0px font-w-600">Foster Change</p>
                             </div>
                         </div>
                         <div className="col-6 col-lg-3">
                             <div className="count-data text-center">
-                                <h6 className="count h2" data-to="150" data-speed="150">{isOrganizer === 'true' && volunteers} {isOrganizer === 'false' && 'WE'}</h6>
-                                <p className="m-0px font-w-600">{isOrganizer === 'true' && 'Volunteers Total'} {isOrganizer === 'false' && 'Do Good'}</p>
+                                <h6 className="count h2" data-to="150" data-speed="150">WE</h6>
+                                <p className="m-0px font-w-600">Do Good</p>
                             </div>
                         </div>
                         <div className="col-6 col-lg-3">
@@ -172,6 +172,7 @@ class Profile extends Component {
                 </div>
             </div>
         </section>
+
       </form>
       </>
     )

@@ -2,8 +2,8 @@ import { Component } from 'react';
 import Moment from 'react-moment';
 import Cookies from 'js-cookie';
 import { withRouter } from 'react-router-dom';
-import WeCareLogo from './logo/WeCareLogo.png'; // with require
 import { Col } from 'react-bootstrap';
+import we_care from './logo/we_care.png';
 
 
 class EventDetail extends Component {
@@ -40,21 +40,22 @@ class EventDetail extends Component {
     return (
 
       <Col xs={12} md={6} className="event-col">
-      <div class="card mb-5">
-        <h3 class="card-header">{event.name}</h3>
-        <div class="card-body">
-          <p class="card-text">{event.address}</p>
+      <div className="card mb-5">
+        <h3 className="card-header">{event.name}</h3>Category: {event.category}
+        <img className="logo"src={we_care} alt=""/>
+        <div className="card-body">
+          <p className="card-text">{event.address}</p>
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item"><time><Moment format="MM/DD/YYYY">{event.start}</Moment></time></li>
-          <li class="list-group-item"><time><Moment format="h:mm a">{event.start}</Moment></time> - <time><Moment format="h:mm a">{event.end}</Moment></time></li>
-          {event.has_owner_permissions && <li class="list-group-item">You have {event.attendance.length} volunteer(s) attending this event</li>}
+        <ul className="list-group list-group-flush">
+          <li className="list-group-item"><time><Moment format="MM/DD/YYYY">{event.start}</Moment></time></li>
+          <li className="list-group-item"><time><Moment format="h:mm a">{event.start}</Moment></time> - <time><Moment format="h:mm a">{event.end}</Moment></time></li>
+          {event.has_owner_permissions && <li className="list-group-item">You have {event.attendance.length} volunteer(s) attending this event</li>}
         </ul>
-        <div class="card-body">
+        <div className="card-body">
           {isOrganizer === 'false' && <button className="btn btn-dark btn-sm" type='button' onClick={()=> this.signUp(event)}>Sign Up for event</button>}
           {event.has_owner_permissions && <button className="btn btn-dark btn-sm" type='button' onClick={() => this.props.deleteEvent(event.id)}>Delete Event</button>}
         </div>
-        <div class="card-footer text-muted">
+        <div className="card-footer text-muted">
           2 days ago
         </div>
       </div>

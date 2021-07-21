@@ -2,7 +2,7 @@ import './App.css';
 import Cookies from 'js-cookie';
 import { Route, Switch, withRouter, Link} from 'react-router-dom';
 import { Component } from 'react';
-import we_care from './logo/we_care.png';
+
 
 import Login from './Login';
 import Registration from './Registration';
@@ -19,13 +19,13 @@ import Gallery from './gallery';
 import OrganizerReviews from './organizerReviews';
 import MapView from './mapView';
 import ContactUs from './contactUs';
-import Carousel from 'react-bootstrap/Carousel';
 import Image from 'react-bootstrap/Image';
 import {Container, Row, Col }from 'react-bootstrap';
 
 
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import { NavDropdown } from 'react-bootstrap';
 
 
 class App extends Component {
@@ -110,50 +110,42 @@ class App extends Component {
 
   render() {
     let user = localStorage.getItem("user")
+    let show = "show"
     return (
         <>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-          <div className="container-fluid">
-            <Link className="navbar-brand" to='/'>WeCare</Link>
-            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-            </button>
-
-          <div className="collapse navbar-collapse" id="navbarColor02">
-            <ul className="navbar-nav me-auto">
-              <li className="nav-item">
-                <a className="nav-link active" href="#">Home
-                  <span className="visually-hidden">(current)</span>
-                </a>
-              </li>
-              <li className="nav-item">
+        <Navbar bg="dark" expand="lg" variant="dark">
+          <Container>
+            <Link className="navbar-brand" to="/">WeCare</Link>
+            <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="me-auto">
+                <Link className="nav-link" to="/">Home</Link>
                 <Link className="nav-link" to='/events'>Find Opportunities</Link>
-              </li>
-              <li className="nav-item">
                 <Link className="nav-link" to='/contactUs'>Contact Us</Link>
-              </li>
-            </ul>
-            <div className="d-flex">
-              {!!Cookies.get('Authorization') && <Link className="nav-link" to='/profile'>View Profile</Link>}
+              </Nav>
+              <div className="d-flex">
+              <ul className="navbar-nav me-auto">
+              {!!Cookies.get('Authorization') && <li className="nav-item"><Link className="nav-link" to='/profile'>View Profile</Link></li>}
               {!!Cookies.get('Authorization')
-              ? <button type="button" className="btn btn-secondary my-2 my-sm-0" onClick={this.logout}>Logout</button>
-              : <Link className="btn btn-secondary my-2 my-sm-0" to='/login'>Login</Link>
+              ? <li className="nav-item"><button type="button" className="btn btn-secondary my-2 my-sm-0" onClick={this.logout}>Logout</button></li>
+              : <li className="nav-item"><Link className="btn btn-secondary my-2 my-sm-0" to='/login'>Login</Link></li>
               }
+              </ul>
             </div>
-        </div>
-        </div>
-      </nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
           <Switch>
             <Route exact path='/'>
               <div className="home">
-                testing
+                <p>Hi, my name is Eric. </p>
               </div>
               <Container>
                 <Row>
                   <Col>
                   <figure>
                     <blockquote className="blockquote">
-                      <p class="mb-0">If you can’t fly then run, if you can’t run then walk, if you can’t walk then crawl, but whatever you do you have to keep moving forward.</p>
+                      <p className="mb-0">If you can’t fly then run, if you can’t run then walk, if you can’t walk then crawl, but whatever you do you have to keep moving forward.</p>
                     </blockquote>
                     <figcaption className="blockquote-footer">
                       Martin Luther King Jr.
@@ -161,9 +153,9 @@ class App extends Component {
                   </figure>
                 </Col>
                 <Col>
-                  <figure class="text-center">
+                  <figure className="text-center">
                     <blockquote className="blockquote">
-                      <p class="mb-0">Not everything that is faced can be changed, but nothing can be changed until it is faced.</p>
+                      <p className="mb-0">Not everything that is faced can be changed, but nothing can be changed until it is faced.</p>
                     </blockquote>
                     <figcaption className="blockquote-footer">
                       James Baldwin
@@ -171,9 +163,9 @@ class App extends Component {
                   </figure>
                 </Col>
                 <Col>
-                  <figure class="text-end">
+                  <figure className="text-end">
                     <blockquote className="blockquote">
-                      <p class="mb-0">History, despite its wrenching pain, cannot be unlived, but if faced with courage, need not be lived again.</p>
+                      <p className="mb-0">History, despite its wrenching pain, cannot be unlived, but if faced with courage, need not be lived again.</p>
                     </blockquote>
                     <figcaption className="blockquote-footer">
                       Maya Angelou

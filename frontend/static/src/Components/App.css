@@ -1,7 +1,9 @@
 .home {
   background-color: #222529;
-  height: 400px;
-  color: gold;
+  height: 450px;
+  color: white;
+  text-align: center;
+  padding-top: 100px;
 }
 
 
@@ -203,15 +205,31 @@ a {
 
 
 
-
+.testing{
+  display: inline-block;
+}
 
 
 /* Profile */
+.form-profile {
+  display: flex;
+  justify-content: space-evenly;
+}
 .section {
-    padding: 100px 0;
+    margin: 100px 0;
     position: relative;
+    width: 800px;
+
+    display: inline-block;
 }
 
+.div-profile {
+  padding: 0;
+  background-color: lightgray;
+  opacity: 97%;
+  border-radius: 2%;
+
+}
 
 img {
     vertical-align: middle;
@@ -301,7 +319,7 @@ img {
 }
 .about-section .counter .count {
   font-weight: 700;
-  color: #20247b;
+  color: black;
   margin: 0 0 5px;
 }
 .about-section .counter p {
@@ -462,4 +480,9 @@ li {
 
 .main {
   margin: 0;
+}
+
+.logo{
+  width: 100%;
+  height: 300px;
 }
