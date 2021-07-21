@@ -12,9 +12,11 @@ class ProfileSerializer(serializers.ModelSerializer):
     email = serializers.ReadOnlyField(source='user.email')
     first_name = serializers.ReadOnlyField(source='user.first_name')
     last_name = serializers.ReadOnlyField(source='user.last_name')
+    is_organizer = serializers.ReadOnlyField(source='user.is_organizer')
     class Meta:
         model = Profile
         fields = '__all__'
+        
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

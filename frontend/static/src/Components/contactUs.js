@@ -4,32 +4,57 @@ import { Component } from 'react';
 class ContactUs extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      profiles: [],
+    }
   }
+
+  componentDidMount() {
+    fetch('api/v1/users/profiles/organizations')
+    .then(response => response.json())
+    .then(data => this.setState({ profiles: data }))
+  }
+
   render(){
+    const emails= this.state.profiles.map((profile) =>(
+      <option key={profile.id}>{profile.username}</option>
+    ))
+
     return(
-      <section id="contact" className="content-section text-center">
-              <div className="contact-section">
-                  <div className="container">
-                    <h2>Contact Us</h2>
-                        <form className="form-horizontal">
-                          <div className="form-group">
-                            <label for="exampleInputName2">Name</label>
-                            <input type="text" className="form-control" id="exampleInputName2" placeholder="Jane Doe"/>
-                          </div>
-                          <div className="form-group">
-                            <label for="exampleInputEmail2">Email</label>
-                            <input type="email" className="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com"/>
-                          </div>
-                          <div className="form-group ">
-                            <label for="exampleInputText">Your Message</label>
-                           <textarea  className="form-control" placeholder="Description"></textarea>
-                          </div>
-                          <button type="submit" className="btn btn-default">Send Message</button>
-                        </form>
-                        <hr/>
-                  </div>
-              </div>
-            </section>
+      <form className="contact-form">
+        <fieldset>
+          <div className="form-group">
+            <label htmlFor="exampleInputEmail1" className="form-label mt-4">Name</label>
+            <input type="text" className="form-control" id="exampleInputEmail1" placeholder="Enter your first and last name"/>
+          </div>
+          <div className="form-group">
+            <label htmlFor="exampleInputEmail1" className="form-label mt-4">Email address</label>
+            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
+          </div>
+          <div className="form-group">
+            <label htmlFor="exampleSelect1" className="form-label mt-4">Choose an Organization</label>
+            <select className="form-select" id="exampleSelect1">
+              <option value="">WeCare</option>
+              {emails}
+            </select>
+          </div>
+          <div class="form-group">
+            <label htmlFor="exampleSelect2" className="form-label mt-4">Contact Reason</label>
+            <select multiple="" className="form-select" id="exampleSelect2">
+              <option>Need help siging up for an event</option>
+              <option>Need special accomodations for upcoming event</option>
+              <option>Volunteer Attendance Issue</option>
+              <option>General Inquiries</option>
+              <option>Organizational Assistance</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label htmlFor="exampleTextarea" className="form-label mt-4">Reason for Contact</label>
+            <textarea className="form-control" id="exampleTextarea" rows="3"></textarea>
+          </div>
+          <button type="submit" class="btn btn-dark">Submit</button>
+        </fieldset>
+      </form>
     )
   }
 }

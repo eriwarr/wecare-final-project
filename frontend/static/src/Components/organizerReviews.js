@@ -17,6 +17,7 @@ class OrganizerReviews extends Component {
   }
 
   render(){
+    console.log(this.state.reviews.length)
     const reviews = this.state.reviews.map((review => (
       <li key={review.id}>
       <Accordion.Item eventKey={review.id}>
@@ -32,7 +33,13 @@ class OrganizerReviews extends Component {
 
     )))
     return(
+      <>
+      {this.state.reviews.length === 0
+        ? <h1>Sorry no reviews yet!</h1>
+        : <h1>Organization Reviews</h1>
+    }
       <Accordion>{reviews}</Accordion>
+      </>
     )
   }
 }

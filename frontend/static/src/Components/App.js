@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 import { Route, Switch, withRouter, Link} from 'react-router-dom';
 import { Component } from 'react';
 
-
+import Organizations from './organizations';
 import Login from './Login';
 import Registration from './Registration';
 import CreateUserProfile from './CreateUserProfile';
@@ -219,6 +219,9 @@ class App extends Component {
             </Route>
             <Route path='/contactUs'>
               <ContactUs/>
+            </Route>
+            <Route path='/organizations'>
+              <Organizations/>
             </Route>
           </Switch>
         </>
