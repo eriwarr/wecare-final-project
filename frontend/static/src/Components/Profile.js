@@ -20,7 +20,7 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    fetch('api/v1/users/profiles/user')
+    fetch('/api/v1/users/profiles/user')
     .then(response => response.json())
     .then(data => this.setState({profile: data}));
   }
@@ -55,7 +55,7 @@ class Profile extends Component {
       },
       body: formData,
     }
-      await fetch('api/v1/users/profiles/user/', options)
+      await fetch('/api/v1/users/profiles/user/', options)
 
       this.setState({isEditing: false});
 
@@ -81,7 +81,7 @@ class Profile extends Component {
       {this.state.showAlert && alert}
       <form onSubmit={this.editProfile} className="form-profile">
       <section className="section about-section" id="about">
-            <div className="container div-profile">
+            <div>
                 <div className="row align-items-center flex-row-reverse">
                     <div className="col-lg-6">
                         <div className="about-text go-to">
@@ -102,7 +102,7 @@ class Profile extends Component {
                             <h6 className="theme-color lead">{isOrganizer === 'false' && `Thank you for being an amazing volunteer!`}</h6>
                             <p>I <mark>created a volunteering platform</mark> for people like you to be matched with amazing volunteering opportunities. Please feel free to explore the site and find what suits your needs.</p>
                             <div className="row about-list">
-                                <div className="col-md-6">
+                                <div className="col-md-6 profile-buttons">
                                     <div className="media">
                                     {isOrganizer === 'false' && <Link className="media" to='/eventlog'>See Event Log</Link>}
                                     {isOrganizer === 'true' &&  <Link to='/organizerEvents'>See Your Events</Link>}

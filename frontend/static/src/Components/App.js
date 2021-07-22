@@ -114,7 +114,7 @@ class App extends Component {
     return (
         <>
         <Navbar bg="dark" expand="lg" variant="dark">
-          <Container>
+          <Container className='nav-container'>
             <Link className="navbar-brand" to="/">WeCare</Link>
             <Navbar.Toggle aria-controls="basic-navbar-nav"/>
             <Navbar.Collapse id="basic-navbar-nav">
@@ -127,8 +127,8 @@ class App extends Component {
               <ul className="navbar-nav me-auto">
               {!!Cookies.get('Authorization') && <li className="nav-item"><Link className="nav-link" to='/profile'>View Profile</Link></li>}
               {!!Cookies.get('Authorization')
-              ? <li className="nav-item"><button type="button" className="btn btn-secondary my-2 my-sm-0" onClick={this.logout}>Logout</button></li>
-              : <li className="nav-item"><Link className="btn btn-secondary my-2 my-sm-0" to='/login'>Login</Link></li>
+              ? <li className="nav-item"><button type="button" className="btn nav-link" onClick={this.logout}>Logout</button></li>
+              : <li className="nav-item"><Link className="nav-link" to='/login'>Login</Link></li>
               }
               </ul>
             </div>
@@ -145,30 +145,30 @@ class App extends Component {
                   <Col>
                   <figure>
                     <blockquote className="blockquote">
-                      <p className="mb-0">If you can’t fly then run, if you can’t run then walk, if you can’t walk then crawl, but whatever you do you have to keep moving forward.</p>
+                      <p className="mb-0">"If you can’t fly then run, if you can’t run then walk, if you can’t walk then crawl, but whatever you do you have to keep moving forward."</p>
                     </blockquote>
                     <figcaption className="blockquote-footer">
-                      Martin Luther King Jr.
+                      <strong>Martin Luther King Jr.</strong>
                     </figcaption>
                   </figure>
                 </Col>
                 <Col>
                   <figure className="text-center">
                     <blockquote className="blockquote">
-                      <p className="mb-0">Not everything that is faced can be changed, but nothing can be changed until it is faced.</p>
+                      <p className="mb-0">"Not everything that is faced can be changed, but nothing can be changed until it is faced."</p>
                     </blockquote>
                     <figcaption className="blockquote-footer">
-                      James Baldwin
+                      <strong>James Baldwin</strong>
                     </figcaption>
                   </figure>
                 </Col>
                 <Col>
                   <figure className="text-end">
                     <blockquote className="blockquote">
-                      <p className="mb-0">History, despite its wrenching pain, cannot be unlived, but if faced with courage, need not be lived again.</p>
+                      <p className="mb-0">"History, despite its wrenching pain, cannot be unlived, but if faced with courage, need not be lived again."</p>
                     </blockquote>
                     <figcaption className="blockquote-footer">
-                      Maya Angelou
+                      <strong>Maya Angelou</strong>
                     </figcaption>
                   </figure>
                 </Col>

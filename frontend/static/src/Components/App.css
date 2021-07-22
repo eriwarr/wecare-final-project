@@ -13,6 +13,7 @@
 
 .home-p {
   width: 800px;
+  font-size: 30px;
 }
 
 h1 {
@@ -509,4 +510,24 @@ li {
   justify-content: center;
   text-align: center;
   background-color: #D4D4D4;
+}
+
+.blockquote {
+  padding-top: 50px;
+}
+
+.mb-0 {
+  font-weight: 600;
+}
+
+.blockquote-footer {
+  font-size: 30px;
+}
+
+.nav-container {
+  margin: 0;
+}
+
+.profile-buttons {
+  text-decoration: underline;
 }

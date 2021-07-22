@@ -154,37 +154,55 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
+# # Static files (CSS, JavaScript, Images)
+# # https://docs.djangoproject.com/en/3.2/howto/static-files/
+#
+# STATIC_URL = '/static/'
+#
+# # Default primary key field type
+# # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+#
+# DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+#
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#
+# REST_FRAMEWORK = {
+#     'COERCE_DECIMAL_TO_STRING': False,
+#     # Your other settings
+# }
+#
+# # https://docs.djangoproject.com/en/3.2/topics/auth/customizing/#auth-custom-user
+# AUTH_USER_MODEL = 'accounts.User'
+#
+#
+# SITE_ID = 1
+#
+# # Managing files
+# # https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-MEDIA_ROOT
+#
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_URL = '/media/'
+#
+# STATICFILES_DIRS = (os.path.join(BASE_DIR, 'frontend/static/build/static'),)
+# REACT_APP_DIR = os.path.join(BASE_DIR, 'frontend/static')
+#
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
 
 STATIC_URL = '/static/'
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-REST_FRAMEWORK = {
-    'COERCE_DECIMAL_TO_STRING': False,
-    # Your other settings
-}
-
-# https://docs.djangoproject.com/en/3.2/topics/auth/customizing/#auth-custom-user
+REACT_APP_DIR = os.path.join(BASE_DIR, 'frontend/static')
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'frontend/static/build/static'),)
+# Default primary key field type
+# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.User'
-
-
-SITE_ID = 1
-
 # Managing files
-# https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-MEDIA_ROOT
-
+# https://docs.djangoproject.com/en/3.2/topics/files/#managing-files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'frontend/static/build/static'),)
-REACT_APP_DIR = os.path.join(BASE_DIR, 'frontend/static')
-
+SITE_ID = 1
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
