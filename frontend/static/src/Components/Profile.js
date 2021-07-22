@@ -81,7 +81,7 @@ class Profile extends Component {
       {this.state.showAlert && alert}
       <form onSubmit={this.editProfile} className="form-profile">
       <section className="section about-section" id="about">
-            <div>
+            <div className="container div-profile">
                 <div className="row align-items-center flex-row-reverse">
                     <div className="col-lg-6">
                         <div className="about-text go-to">

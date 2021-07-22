@@ -16,8 +16,6 @@ class AttendanceCreateSerializer(serializers.ModelSerializer):
         model = Attendance
         fields = '__all__'
 
-
-
 class AttendanceReadSerializer(serializers.ModelSerializer):
     volunteer = serializers.ReadOnlyField(source='attendee.username')
     class Meta:

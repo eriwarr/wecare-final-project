@@ -8,9 +8,9 @@ from rest_framework.response import Response
 # Create your views here.
 
 class EventListView(generics.ListCreateAPIView):
+    permission_classes = (IsAuthOrReadOnly,)
     queryset = Event.objects.all().order_by("start")
     serializer_class = EventSerializer
-    permissions = (IsAuthOrReadOnly,)
 
     def perform_create(self, serializer):
         serializer.save(organizer=self.request.user)
@@ -64,6 +64,7 @@ class AttendanceDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 
 class EventCategoryListView(generics.ListCreateAPIView):
     serializer_class = EventSerializer
+    permissions = (IsAuthOrReadOnly,)
 
     def get_queryset(self):
         selection = self.request.query_params['category']
@@ -71,6 +72,7 @@ class EventCategoryListView(generics.ListCreateAPIView):
 
 class EventLocationListView(generics.ListCreateAPIView):
     serializer_class = EventAddressSerializer
+    permissions = (IsAuthOrReadOnly,)
     queryset = Event.objects.all()
 
 
