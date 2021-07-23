@@ -350,9 +350,7 @@ mark {
     color: #EC529F;
 }
 
-.about-section a {
-  color: black;
-}
+
 
 
 
@@ -565,6 +563,9 @@ li {
     min-height: 1px;
     padding: 1rem;
     max-width: 300px;
+    width: 300px;
+    max-height: 372px;
+    height: 372px;
     background-color: lightgray;
     border-radius: 1%;
 }
@@ -645,7 +646,12 @@ li {
 .category-nav {
   height:200px;
   text-align: center;
-  
+}
 
+.div-padding {
+  padding: 0;
+}
 
+.btn-dark {
+  width: 150.047px;
 }

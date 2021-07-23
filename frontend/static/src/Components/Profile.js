@@ -81,11 +81,11 @@ class Profile extends Component {
 
     return(
       <>
-      {this.state.showAlert && alert}
+
       <form onSubmit={this.editProfile} className="form-profile">
       <section className="section about-section" id="about">
             <div className="container div-profile">
-                <div className="row align-items-center flex-row-reverse">
+                <div className="row align-items-center flex-row-reverse div-padding">
                     <div className="col-lg-6">
                         <div className="about-text go-to">
                             <h3>
@@ -105,33 +105,25 @@ class Profile extends Component {
                             <h6 className="theme-color lead">{isOrganizer === 'false' && `Thank you for being an amazing volunteer!`}</h6>
                             <p>I <mark>created a volunteering platform</mark> for people like you to be matched with amazing volunteering opportunities. Please feel free to explore the site and find what suits your needs.</p>
                             <div className="row about-list">
-                                <div className="col-md-6 profile-buttons">
+                                <div className="col-md-6">
                                     <div className="media">
-                                    {isOrganizer === 'false' && <Link className="media" to='/eventlog'><FaBook/>See Event Log</Link>}
-                                    {isOrganizer === 'true' &&  <Link to='/organizerEvents'>See Your Events</Link>}
+                                    {isOrganizer === 'false' && <Link className="btn btn-dark" to='/eventlog'><FaBook/>Your Events</Link>}
+                                    {isOrganizer === 'true' &&  <Link className="btn btn-dark" to='/organizerEvents'>Your Events</Link>}
                                     </div>
                                     <div className="media">
-                                    {isOrganizer === 'false' && <Link to='/eventReviews'><MdFeedback/>See Your Feedback</Link>}
-                                    {isOrganizer === 'true' &&  <Link to='/createEvent'>Create A New Event</Link>}
-                                    </div>
-                                    <div className="media">
-                                    {isOrganizer === 'false' && <Link to="/map"><FaSearch/>Search Events</Link>}
-                                    {isOrganizer === 'true' &&  <Link to='/volunteerList'>See Attendees</Link>}
-                                    </div>
-                                    <div className="media">
-                                    {isOrganizer === 'false' && <Link to='/gallery'><RiGalleryFill/>See your gallery</Link>}
-                                    {isOrganizer === 'true' && <Link to='/organizerReviews'>See Your Reviews</Link>}
+                                    {isOrganizer === 'false' && <Link className="btn btn-dark" to='/eventReviews'><MdFeedback/>Your Feedback</Link>}
+                                    {isOrganizer === 'true' &&  <Link className="btn btn-dark" to='/createEvent'>Create A New Event</Link>}
                                     </div>
                                 </div>
                                 <div className="col-md-6">
-                                    <div className="media">
-                                        <label>E-mail</label>
-                                        <p>{this.state.profile.email}</p>
-                                    </div>
-                                    <div className="media">
-                                        <label>Phone</label>
-                                        <p>820-885-3321</p>
-                                    </div>
+                                  <div className="media">
+                                  {isOrganizer === 'false' && <Link className="btn btn-dark" to="/map"><FaSearch/>Search Events</Link>}
+                                  {isOrganizer === 'true' &&  <Link className="btn btn-dark" to='/volunteerList'>See Attendees</Link>}
+                                  </div>
+                                  <div className="media">
+                                  {isOrganizer === 'false' && <Link className="btn btn-dark" to='/gallery'><RiGalleryFill/>Your gallery</Link>}
+                                  {isOrganizer === 'true' && <Link className="btn btn-dark" to='/organizerReviews'>Your Reviews</Link>}
+                                  </div>
                                 </div>
                             </div>
                         </div>
