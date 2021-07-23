@@ -4,7 +4,10 @@ import Cookies from 'js-cookie';
 import { withRouter } from 'react-router-dom';
 import { Col } from 'react-bootstrap';
 import we_care from './logo/we_care.png';
-
+import { HiLocationMarker } from "react-icons/hi";
+import { BiTimeFive } from 'react-icons/bi';
+import { IoIosAddCircle } from 'react-icons/io';
+import { RiDeleteBin2Fill } from 'react-icons/ri';
 
 class EventDetail extends Component {
   constructor(props) {
@@ -40,25 +43,18 @@ class EventDetail extends Component {
     return (
 
       <Col xs={12} md={4} className="event-col">
-      <div className="card mb-5 event-card">
-        <h3 className="card-header">{event.name}</h3>Category: {event.category}
-        <img className="logo"src={we_care} alt=""/>
-        <div className="card-body">
-          <p className="card-text">{event.address}</p>
+        <div class="card-card">
+          <div class="card-body text-center">
+            <img src={event.profile_picture}  alt="User" class="img-fluid img-thumbnail rounded-circle border-0 mb-3 event-pic"/>
+            <h4 class="card-title">{event.name}</h4>
+            <p className="small-txt"><BiTimeFive/><Moment format='LT'>{event.start}</Moment>-<Moment format='LT'>{event.end}</Moment></p>
+            <p className="small-txt"><HiLocationMarker/>{event.address}</p>
+          </div>
+          <div class="card-footer">
+            {isOrganizer === 'false' && <button class="btn btn-light btn-sm bg-white has-icon btn-block" type="button" onClick={this.signup}><IoIosAddCircle/>Sign Up</button>}
+            {event.has_owner_permissions && <button class="btn btn-light btn-sm bg-white has-icon btn-block" type="button" onClick={() => this.props.deleteEvent(event.id)}><RiDeleteBin2Fill/>Delete Event</button>}
+          </div>
         </div>
-        <ul className="list-group list-group-flush">
-          <li className="list-group-item"><time><Moment format="MM/DD/YYYY">{event.start}</Moment></time></li>
-          <li className="list-group-item"><time><Moment format="h:mm a">{event.start}</Moment></time> - <time><Moment format="h:mm a">{event.end}</Moment></time></li>
-          {event.has_owner_permissions && <li className="list-group-item">You have {event.attendance.length} volunteer(s) attending this event</li>}
-        </ul>
-        <div className="card-body">
-          {isOrganizer === 'false' && <button className="btn btn-dark btn-sm" type='button' onClick={()=> this.signUp(event)}>Sign Up for event</button>}
-          {event.has_owner_permissions && <button className="btn btn-dark btn-sm" type='button' onClick={() => this.props.deleteEvent(event.id)}>Delete Event</button>}
-        </div>
-        <div className="card-footer text-muted">
-          2 days ago
-        </div>
-      </div>
       </Col>
 
     )

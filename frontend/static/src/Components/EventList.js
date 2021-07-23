@@ -3,6 +3,12 @@ import Cookies from 'js-cookie';
 import EventDetail from './EventDetail';
 import { Link } from 'react-router-dom';
 import {Container, Row }from 'react-bootstrap';
+import { RiCommunityFill } from 'react-icons/ri';
+import { MdPets } from 'react-icons/md';
+import { FaChild } from 'react-icons/fa';
+import { GiTreeDoor, GiHealthPotion } from 'react-icons/gi';
+import { BiHealth } from 'react-icons/bi';
+
 
 class EventList extends Component {
   constructor(props) {
@@ -89,17 +95,18 @@ class EventList extends Component {
     ));
 
     return (
-      <div className="container">
-      <div className="nav-scroller py-1 mb-2">
+      <div className="container event-container">
+      <div className="nav-scroller py-1 mb-2 category-nav">
+        <h1>Volunteer Events</h1>
         <nav className="nav d-flex justify-content-between">
-          <button type="button" className="btn" onClick={() => this.filterEvents("Community Development")}><strong>Community Development</strong></button>
-          <button type="button" className="btn" onClick={() => this.filterEvents("Animals")}><strong>Animals</strong></button>
-          <button type="button" className="btn" onClick={() => this.filterEvents("Children and Youth")}><strong>Children & Youth</strong></button>
-          <button type="button" className="btn" onClick={() => this.filterEvents("Environment")}><strong>Environment</strong></button>
-          <button type="button" className="btn" onClick={() => this.filterEvents("Health")}><strong>Health</strong></button>
-          <button type="button" className="btn" onClick={this.showAll}><strong>ALL</strong></button>
-          <Link type="button" className="btn" to='/map'><strong>View Maps</strong></Link>
+          <button type="button" className="btn filter" onClick={() => this.filterEvents("Community Development")}><strong><RiCommunityFill/>Community Development</strong></button>
+          <button type="button" className="btn filter" onClick={() => this.filterEvents("Animals")}><strong><MdPets/>Animals</strong></button>
+          <button type="button" className="btn filter" onClick={() => this.filterEvents("Children and Youth")}><strong><FaChild/>Children & Youth</strong></button>
+          <button type="button" className="btn filter" onClick={() => this.filterEvents("Environment")}><strong><GiTreeDoor/>Environment</strong></button>
+          <button type="button" className="btn filter" onClick={() => this.filterEvents("Health")}><strong><GiHealthPotion/>Health</strong></button>
+          <button type="button" className="btn filter" onClick={this.showAll}><strong><BiHealth/>All</strong></button>
         </nav>
+        <Link type="button" className="btn filter" to='/map'><strong>View Events on Map</strong></Link>
       </div>
       <Container>
         <Row>

@@ -25,6 +25,7 @@
     "react-dom": "^17.0.2",
     "react-geocode": "^0.2.3",
     "react-google-maps": "^9.4.5",
+    "react-icons": "^4.2.0",
     "react-moment": "^1.1.1",
     "react-native-maps": "0.28.0",
     "react-native-maps-directions": "^1.8.0",

@@ -2,6 +2,9 @@ import Cookies from 'js-cookie';
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Alert from 'react-bootstrap/Alert';
+import { FaBook, FaSearch } from 'react-icons/fa';
+import { RiGalleryFill } from 'react-icons/ri';
+import { MdFeedback } from 'react-icons/md';
 
 class Profile extends Component {
   constructor(props) {
@@ -104,19 +107,19 @@ class Profile extends Component {
                             <div className="row about-list">
                                 <div className="col-md-6 profile-buttons">
                                     <div className="media">
-                                    {isOrganizer === 'false' && <Link className="media" to='/eventlog'>See Event Log</Link>}
+                                    {isOrganizer === 'false' && <Link className="media" to='/eventlog'><FaBook/>See Event Log</Link>}
                                     {isOrganizer === 'true' &&  <Link to='/organizerEvents'>See Your Events</Link>}
                                     </div>
                                     <div className="media">
-                                    {isOrganizer === 'false' && <Link to='/eventReviews'>See Your Feedback</Link>}
+                                    {isOrganizer === 'false' && <Link to='/eventReviews'><MdFeedback/>See Your Feedback</Link>}
                                     {isOrganizer === 'true' &&  <Link to='/createEvent'>Create A New Event</Link>}
                                     </div>
                                     <div className="media">
-                                    {isOrganizer === 'false' && <Link to="/map">Search Events</Link>}
+                                    {isOrganizer === 'false' && <Link to="/map"><FaSearch/>Search Events</Link>}
                                     {isOrganizer === 'true' &&  <Link to='/volunteerList'>See Attendees</Link>}
                                     </div>
                                     <div className="media">
-                                    {isOrganizer === 'false' && <Link to='/gallery'>See your gallery</Link>}
+                                    {isOrganizer === 'false' && <Link to='/gallery'><RiGalleryFill/>See your gallery</Link>}
                                     {isOrganizer === 'true' && <Link to='/organizerReviews'>See Your Reviews</Link>}
                                     </div>
                                 </div>

@@ -21,6 +21,7 @@ import MapView from './mapView';
 import ContactUs from './contactUs';
 import Image from 'react-bootstrap/Image';
 import {Container, Row, Col }from 'react-bootstrap';
+import { BiLogOut } from 'react-icons/bi';
 
 
 import Navbar from 'react-bootstrap/Navbar';
@@ -113,7 +114,7 @@ class App extends Component {
     let show = "show"
     return (
         <>
-        <Navbar bg="dark" expand="lg" variant="dark">
+        <Navbar bg="dark" expand="lg" variant="dark" className='nav-container-main'>
           <Container className='nav-container'>
             <Link className="navbar-brand" to="/">WeCare</Link>
             <Navbar.Toggle aria-controls="basic-navbar-nav"/>

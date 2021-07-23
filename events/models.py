@@ -12,6 +12,7 @@ class Event(models.Model):
     organizer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True)
     address = models.CharField(max_length=64, default="1234 Alligator Highway")
     position = models.JSONField(null=True)
+    profile_picture = models.ImageField(upload_to='profiles/', default='profiles/volunteerdefault.jpeg')
 
     def __str__(self):
         return self.name
