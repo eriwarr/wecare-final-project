@@ -10,23 +10,45 @@ export class MapContainer extends Component {
         this.state = {
           places: [
             {
-              name: "Manila",
-              title: "Manila",
+              name: "You're here",
+              title: "You're here",
               lat: 34.84898779374117,
               lng: -82.39700009882739,
               id: 1,
             },
             {
-              name: "Taguig",
-              title: "Taguig",
+              name: "Destination",
+              title: "Destination",
               lat: this.props.address.lat,
               lng: this.props.address.lng,
               id: 2,
             },
           ]
         }
+        this.getCoordinates = this.getCoordinates.bind(this);
       }
 
+
+  componentDidMount() {
+    this.getCoordinates();
+    console.log(this.state.places[0].lat)
+  }
+
+  getCoordinates = () => {
+   let a;
+   let b;
+
+   navigator.geolocation.getCurrentPosition(position => {
+     a = position.coords.latitude;
+     b = position.coords.longitude;
+     console.log("Latitude is :", position.coords.latitude);
+     console.log("Longitude is :", position.coords.longitude);
+     this.setState({
+       userlat: a,
+       userlng: b
+     });
+   });
+ };
 
   onMapReady = (mapProps, map) => {
     let coords = [];
@@ -133,7 +155,6 @@ export class MapContainer extends Component {
 
   render() {
     //if (!this.props.loaded) return <div>Loading...</div>;
-      console.log(this.props.address)
     return (
       <div>
         <Map
@@ -141,7 +162,7 @@ export class MapContainer extends Component {
           google={this.props.google}
           onClick={this.onMapClicked}
           onReady={this.onMapReady}
-          style={{ height: "91%", width: "93%" }}
+          style={{ height: "80%", width: "93%"}}
           zoom={8}
         ></Map>
         <div className="pac-card" id="pac-card">

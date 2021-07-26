@@ -34,6 +34,7 @@ class MapView extends Component {
   }
 
   handleModal(address) {
+
     this.setState({ directions: address})
     this.setState({ show: !this.state.show})
   }
@@ -44,6 +45,8 @@ class MapView extends Component {
         showingInfoWindow: true,
       })
   }
+
+
 
   render() {
     const eventListings = this.state.events.map((event) =>(
@@ -70,13 +73,11 @@ class MapView extends Component {
             </Modal.Header>
             <Modal.Body className="show-grid">
               <Container>
-                <Row>
                   <Directions address={this.state.address}/>
-                </Row>
               </Container>
             </Modal.Body>
             <Modal.Footer>
-              <button type="button" className="btn"onClick={() => this.handleModal()}>Close</button>
+              <button type="button" className="btn" onClick={() => this.handleModal()}>Close</button>
             </Modal.Footer>
           </Modal>
           <div className="col-md-6">
