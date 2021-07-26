@@ -47,7 +47,7 @@ class OrganizerEventsDetailView(generics.RetrieveUpdateDestroyAPIView):
 class AttendanceAPIView(generics.ListCreateAPIView):
     # queryset = Attendance.objects.all()
     serializer_class = AttendanceCreateSerializer
-    permissions = (IsAuthOrReadOnly,)
+    permission_classes = (IsAuthOrReadOnly,)
 
     def perform_create(self, serializer):
         serializer.save(attendee=self.request.user)
@@ -60,11 +60,11 @@ class AttendanceAPIView(generics.ListCreateAPIView):
 class AttendanceDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Attendance.objects.all()
     serializer_class = AttendanceCreateSerializer
-    permissions = (IsAuthOrReadOnly,)
+    permission_classes = (IsAuthOrReadOnly,)
 
 class EventCategoryListView(generics.ListCreateAPIView):
     serializer_class = EventSerializer
-    permissions = (IsAuthOrReadOnly,)
+    permission_classes = (IsAuthOrReadOnly,)
 
     def get_queryset(self):
         selection = self.request.query_params['category']
@@ -72,7 +72,7 @@ class EventCategoryListView(generics.ListCreateAPIView):
 
 class EventLocationListView(generics.ListCreateAPIView):
     serializer_class = EventAddressSerializer
-    permissions = (IsAuthOrReadOnly,)
+    permission_classes = (IsAuthOrReadOnly,)
     queryset = Event.objects.all()
 
 

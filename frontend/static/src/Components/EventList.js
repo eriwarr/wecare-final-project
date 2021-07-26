@@ -76,9 +76,9 @@ class EventList extends Component {
   filterEvents(category) {
     console.log(category)
 
-    fetch(`/api/v1/events/category/?category=${category}`)
-      .then(response => response.json())
-      .then(data => this.setState({ events: data }));
+    // fetch(`/api/v1/events/category/?category=${category}`)
+    //   .then(response => response.json())
+    //   .then(data => this.setState({ events: data }));
 
   }
 
